@@ -1,0 +1,5 @@
+.content__card-foto {
+    object-fit: contain;
+    width: 282px;
+    height: 282px;
+}

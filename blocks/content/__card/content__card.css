@@ -1,0 +1,7 @@
+.content__card {
+    box-sizing: border-box;
+    overflow: hidden;
+    line-height: 0;
+    background-color: #fff;
+    border-radius: 3%;
+}
