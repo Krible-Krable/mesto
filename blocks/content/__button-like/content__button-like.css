@@ -1,3 +1,7 @@
 .content__button-like {
-    
+    background: url('./../../../images/buttonLike.svg') center;
+    border: none;
+    outline: none;
+    height: 18px;
+    width: 20px;
 }
