@@ -7,3 +7,9 @@
     outline: none;
     margin: 0 auto 0 246px;
 }
+
+@media (max-width: 767px) {
+    .profile__add-button {
+       
+    }
+}

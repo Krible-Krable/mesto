@@ -3,6 +3,3 @@
     padding-bottom: 40px;
 }
 
-.header::after {
-    border-bottom: 1px solid #fff;
-}
