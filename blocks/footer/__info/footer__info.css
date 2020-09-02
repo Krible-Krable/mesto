@@ -19,5 +19,6 @@
     .footer__info {
        font-size: 14px;
        line-height: 17px;
+       margin: 46px 20px 60px;
     }
 }

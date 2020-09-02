@@ -19,7 +19,6 @@
 }
 
 .popup__input:focus {
-    outline: 0;
-    
+    outline: 0; 
 }
 
