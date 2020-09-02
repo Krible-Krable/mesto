@@ -6,3 +6,9 @@
     position: relative;
     box-sizing: border-box;
 }
+
+@media (max-width: 767px) {
+    .popup__container {
+        max-width: 280px;
+  }
+}
