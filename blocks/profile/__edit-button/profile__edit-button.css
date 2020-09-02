@@ -6,3 +6,10 @@
     border: 1px solid #fff;   
     outline: none;
 }
+
+@media (max-width: 767px) {
+    .profile__edit-button {
+        width: 18px;
+    height: 18px;
+    }
+}

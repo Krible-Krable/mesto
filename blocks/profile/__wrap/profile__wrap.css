@@ -4,3 +4,10 @@
     align-items: baseline;
     margin-bottom: 16px;
 }
+
+@media (max-width: 1100px) {
+    .profile__wrap {
+        margin-bottom: 14px;
+        align-items: baseline;
+    }
+}

@@ -9,3 +9,13 @@
     min-width: 295px;
     margin-right: 16px;
 }
+
+@media (max-width: 767px) {
+    .profile__name {
+        font-weight: 500;
+        font-size: 27px;
+        min-width: 201px;
+        margin-right: 6px;
+        text-align: center;
+    }
+}
