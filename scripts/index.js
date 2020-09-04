@@ -21,10 +21,10 @@ const popupToggle = function(event) {
     });
     popup.classList.toggle('popup_is-opened');
 
-    let completedFormName = nameUser.innerHTML;
+    let completedFormName = nameUser.textContent;
     inputUserName.value = completedFormName;
 
-    let completedFormBio = bioUser.innerHTML;
+    let completedFormBio = bioUser.textContent;
     inputUserBio.value =  completedFormBio;
 }
 

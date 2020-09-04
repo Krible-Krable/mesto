@@ -6,7 +6,6 @@
     outline: none;
     height: 19px;
     width: 21px;
-    box-sizing: border-box;
 }
 
 .content__button-like:hover {
