@@ -3,7 +3,7 @@
     color: #fff;
     font-family: "Inter", sans-serif;
     font-style: normal;
-    font-weight: thin;
+    font-weight: 400;
     font-size: 18px;
     line-height: 22px;
     text-align: center;
@@ -11,7 +11,7 @@
     max-width: 368px;
     height: 50px;
     width: 100%;
-    margin:  18px auto 37px;
+    margin:  18px auto 0;
     padding: 0;
     box-shadow: none;
     border: 0;
