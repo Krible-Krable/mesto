@@ -15,10 +15,9 @@ let inputUserBio = document.querySelector('.popup__input_bio');
 
 
 const popupToggle = function(event) {
-    console.log({
-        target: event.target,
-        currentTarget: event.currentTarget,
-    });
+        // target: event.target,
+        // currentTarget: event.currentTarget;
+
     popup.classList.toggle('popup_is-opened');
 
     let completedFormName = nameUser.textContent;
