@@ -30,9 +30,6 @@ const openPopup = function(event) {
 }
 
 const closePopup = function (event) {
-    // target: event.target,
-    // currentTarget: event.currentTarget;
-
     popup.classList.remove('popup_is-opened');
 }
 
