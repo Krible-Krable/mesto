@@ -8,8 +8,8 @@ const popupCloseButton = document.querySelector('.popup__button-close');
 let nameUser = document.querySelector('.profile__name');
 let bioUser = document.querySelector('.profile__bio');
 
-let inputUserName = document.querySelector('.popup__input_name');
-let inputUserBio = document.querySelector('.popup__input_bio');
+let inputUserName = document.querySelector('.popup__input_type_name');
+let inputUserBio = document.querySelector('.popup__input_type_bio');
 
 // __________________ЭТО ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА________________
 
@@ -38,8 +38,8 @@ const formElement = document.querySelector('.popup__form');
 const saveForm = function(evt) {
     evt.preventDefault();
 
-    let nameInput = document.querySelector('.popup__input_name');
-    let itSelfInput = document.querySelector('.popup__input_bio');
+    let nameInput = document.querySelector('.popup__input_type_name');
+    let itSelfInput = document.querySelector('.popup__input_type_bio');
 
     let nameValue = nameInput.value;
     let itSelfValue = itSelfInput.value;
