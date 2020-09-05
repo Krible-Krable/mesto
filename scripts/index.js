@@ -16,22 +16,18 @@ let inputUserBio = document.querySelector('.popup__input_type_bio');
 // __________________ЭТО ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА________________
 
 
-const openPopup = function(event) {
-        // target: event.target,
-        // currentTarget: event.currentTarget;
+const openPopup = function() {
+
+    inputUserName.value = nameUser.textContent;
+  
+    inputUserBio.value = bioUser.textContent;
 
     popup.classList.add('popup_is-opened');
+};
 
-    let completedFormName = nameUser.textContent;
-    inputUserName.value = completedFormName;
-
-    let completedFormBio = bioUser.textContent;
-    inputUserBio.value =  completedFormBio;
-}
-
-const closePopup = function (event) {
+const closePopup = function () {
     popup.classList.remove('popup_is-opened');
-}
+};
 
 popupOpenButton.addEventListener('click', openPopup);
 popupCloseButton.addEventListener('click', closePopup);
@@ -41,14 +37,11 @@ popupCloseButton.addEventListener('click', closePopup);
 const saveForm = function(evt) {
     evt.preventDefault();
 
-    let nameValue = inputUserName.value;
-    let itSelfValue = inputUserBio.value;
-
-    nameUser.textContent = nameValue;
-    bioUser.textContent = itSelfValue;
+    nameUser.textContent = inputUserName.value;
+    bioUser.textContent = inputUserBio.value;
 
     closePopup();
-}
+};
 
 formElement.addEventListener('submit', saveForm);
 
