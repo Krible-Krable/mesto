@@ -12,14 +12,13 @@
 @import url('./../blocks/profile/__name/profile__name.css');
 @import url('./../blocks/profile/__bio/profile__bio.css');
 @import url('./../blocks/profile/__edit-button/profile__edit-button.css');
-/* @import url('./../blocks/profile/__add-button-list/profile__add-button-list.css'); */
 @import url('./../blocks/profile/__add-button/profile__add-button.css');
 @import url('./../blocks/content/content.css');
-@import url('./../blocks/content/__card/content__card.css');
-@import url('./../blocks/content/__card-foto/content__card-foto.css');
-@import url('./../blocks/content/__card-footer/content__card-footer.css');
-@import url('./../blocks/content/__card-heading/content__card-heading.css');
-@import url('./../blocks/content/__button-like/content__button-like.css');
+@import url('./../blocks/card/card.css');
+@import url('./../blocks/card/__foto/card__foto.css');
+@import url('./../blocks/card/__footer/card__footer.css');
+@import url('./../blocks/card/__heading/card__heading.css');
+@import url('./../blocks/card/__button-like/card__button-like.css');
 @import url('./../blocks/footer/footer.css');
 @import url('./../blocks/footer/__info/footer__info.css');
 @import url('./../blocks/popup/popup.css');
