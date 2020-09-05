@@ -5,6 +5,8 @@ const popupOpenButton = document.querySelector('.profile__edit-button');
 
 const popupCloseButton = document.querySelector('.popup__button-close');
 
+const formElement = document.querySelector('.popup__form');
+
 let nameUser = document.querySelector('.profile__name');
 let bioUser = document.querySelector('.profile__bio');
 
@@ -14,11 +16,11 @@ let inputUserBio = document.querySelector('.popup__input_type_bio');
 // __________________ЭТО ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА________________
 
 
-const popupToggle = function(event) {
+const openPopup = function(event) {
         // target: event.target,
         // currentTarget: event.currentTarget;
 
-    popup.classList.toggle('popup_is-opened');
+    popup.classList.add('popup_is-opened');
 
     let completedFormName = nameUser.textContent;
     inputUserName.value = completedFormName;
@@ -27,32 +29,28 @@ const popupToggle = function(event) {
     inputUserBio.value =  completedFormBio;
 }
 
-popupOpenButton.addEventListener('click', popupToggle);
-popupCloseButton.addEventListener('click', popupToggle);
+const closePopup = function (event) {
+    // target: event.target,
+    // currentTarget: event.currentTarget;
 
+    popup.classList.remove('popup_is-opened');
+}
+
+popupOpenButton.addEventListener('click', openPopup);
+popupCloseButton.addEventListener('click', closePopup);
 
 // ______________ЭТО СОХРАНЕНИЕ ИНФЫ ПОПАПА__________
-
-const formElement = document.querySelector('.popup__form');
 
 const saveForm = function(evt) {
     evt.preventDefault();
 
-    let nameInput = document.querySelector('.popup__input_type_name');
-    let itSelfInput = document.querySelector('.popup__input_type_bio');
+    let nameValue = inputUserName.value;
+    let itSelfValue = inputUserBio.value;
 
-    let nameValue = nameInput.value;
-    let itSelfValue = itSelfInput.value;
+    nameUser.textContent = nameValue;
+    bioUser.textContent = itSelfValue;
 
-    let profileName = document.querySelector('.profile__name');
-
-    let profileItSelf = document.querySelector('.profile__bio'); 
-
-
-    profileName.textContent = nameValue;
-    profileItSelf.textContent = itSelfValue;
-
-    popup.classList.remove('popup_is-opened');
+    closePopup();
 }
 
 formElement.addEventListener('submit', saveForm);
