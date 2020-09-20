@@ -1,11 +1,13 @@
 
 const profilePopup = document.querySelector('.popup_profile');
 const cardPopup = document.querySelector('.popup_card');
+const imgPopup = document.querySelector('.popup_img-open');
 
 const popupOpenButton = document.querySelector('.profile__edit-button');
 const popupAddCard = document.querySelector('.profile__add-button');
 const popupCloseButton = document.querySelector('.popup_profile .popup__button-close');
 const popupCloseCard = document.querySelector('.popup_card .popup__button-close');
+const popupCloseImg = document.querySelector('.popup_img-open .popup__button-close');
 
 
 const formElement = document.querySelector('.popup__form');
@@ -16,8 +18,11 @@ let bioUser = document.querySelector('.profile__bio');
 const sectionCard = document.querySelector('.content');
 const cardTemplate = document.querySelector('#card-template').content; //темплейт карточки
 
-let mestoName = document.querySelector('.card__heading');
-let mestoLink = document.querySelector('.card__foto');
+// let mestoName = document.querySelector('.card__heading');
+// let mestoLink = document.querySelector('.card__foto');
+
+const imgLink = document.querySelector('.popup__img');
+const labelImg = document.querySelector('.popup__img-label');
 
 let inputUserName = document.querySelector('.popup__input_type_name');
 let inputUserBio = document.querySelector('.popup__input_type_bio');
@@ -43,9 +48,21 @@ const openCardPopup = function() {
     inputMesto.value = '';
     inputLink.value = '';
 }
-const closePopup = function (popup) {
+
+const openImgPopup = function(src, label) {
+    imgLink.src = src;
+    labelImg.textContent = label;
+
+    imgPopup.classList.add('popup_is-opened');
+};
+
+
+
+const closePopup = function(popup) {
     popup.classList.remove('popup_is-opened');
 };
+
+
 
 popupOpenButton.addEventListener('click', openProfilePopup);
 popupCloseButton.addEventListener('click', function() {
@@ -57,6 +74,12 @@ popupAddCard.addEventListener('click', openCardPopup);
 popupCloseCard.addEventListener('click', function() {
     closePopup(cardPopup);
 });
+
+popupCloseImg.addEventListener('click', function() {
+    closePopup(imgPopup);
+});
+
+
 
 // ______________ЭТО СОХРАНЕНИЕ ИНФЫ ПОПАПА__________
 
@@ -91,10 +114,15 @@ function addCard(mestoValue, linkValue) {
 
     const buttonLike = newCard.querySelector('.card__button-like');
     const buttonDelete = newCard.querySelector('.card__button-delete');
+    const cardFoto = newCard.querySelector('.card__foto');
     newCard.querySelector('.card__heading').innerText = mestoValue;
     newCard.querySelector('.card__foto').src = linkValue;
     newCard.querySelector('.card__foto').setAttribute('alt', mestoValue);    
    
+    cardFoto.addEventListener('click', function() {
+        openImgPopup(linkValue, mestoValue);
+    });
+    
     sectionCard.prepend(newCard);
     // sectionCard.appendChild(newCard);
     buttonDelete.addEventListener('click', function (evt) {
@@ -105,6 +133,7 @@ function addCard(mestoValue, linkValue) {
     buttonLike.addEventListener('click', function() {
         buttonLike.classList.toggle('card__button-like_active');
     });
+
 }
 
 // ДОБАВЛЕНИЕ 6 КАРТОЧЕК
