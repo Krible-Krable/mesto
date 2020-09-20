@@ -7,16 +7,23 @@ const popupAddCard = document.querySelector('.profile__add-button');
 const popupCloseButton = document.querySelector('.popup_profile .popup__button-close');
 const popupCloseCard = document.querySelector('.popup_card .popup__button-close');
 
-const buttonLike = document.querySelector('.card__button-like');
 
 const formElement = document.querySelector('.popup__form');
 
 let nameUser = document.querySelector('.profile__name');
 let bioUser = document.querySelector('.profile__bio');
 
+const sectionCard = document.querySelector('.content');
+const cardTemplate = document.querySelector('#card-template').content; //темплейт карточки
+
+let mestoName = document.querySelector('.card__heading');
+let mestoLink = document.querySelector('.card__foto');
+
 let inputUserName = document.querySelector('.popup__input_type_name');
 let inputUserBio = document.querySelector('.popup__input_type_bio');
 
+let inputMesto = document.querySelector('.popup__input_type_place');
+let inputLink = document.querySelector('.popup__input_type_link');
 // __________________ЭТО ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА________________
 
 
@@ -32,6 +39,9 @@ const openProfilePopup = function() {
 
 const openCardPopup = function() {
     cardPopup.classList.add('popup_is-opened');
+
+    inputMesto.value = '';
+    inputLink.value = '';
 }
 const closePopup = function (popup) {
     popup.classList.remove('popup_is-opened');
@@ -61,27 +71,40 @@ const saveForm = function(evt) {
 
 formElement.addEventListener('submit', saveForm);
 
-//РЕДАКТИРОВАНИЕ ПОПАПОВ
+
+const saveCard = function(evt) {
+    evt.preventDefault();
+
+    addCard(inputMesto.value, inputLink.value);
+    closePopup(cardPopup);
+}
+
+cardPopup.addEventListener('submit', saveCard);
+
+
 
 //_____________________РАБОТА С КАРТОЧКАМИ_______________________
 
-function likeActived() {
-    buttonLike.classList.toggle('card__button-like_active');
-}
-
-// buttonLike.addEventListener('click', likeActived);
-
-
-const sectionCard = document.querySelector('.content');
-const cardTemplate = document.querySelector('#card-template').content; //темплейт карточки
 function addCard(mestoValue, linkValue) {
     // const cardTemplate = document.querySelector('#card-template').content; //темплейт карточки
-    const htmlElement = cardTemplate.cloneNode(true);
-    htmlElement.querySelector('.card__heading').innerText = mestoValue;
-    htmlElement.querySelector('.card__foto').src = linkValue;
-    htmlElement.querySelector('.card__foto').setAttribute('alt', mestoValue);    
+    const newCard = cardTemplate.cloneNode(true);
 
-    sectionCard.appendChild(htmlElement);
+    const buttonLike = newCard.querySelector('.card__button-like');
+    const buttonDelete = newCard.querySelector('.card__button-delete');
+    newCard.querySelector('.card__heading').innerText = mestoValue;
+    newCard.querySelector('.card__foto').src = linkValue;
+    newCard.querySelector('.card__foto').setAttribute('alt', mestoValue);    
+   
+    sectionCard.prepend(newCard);
+    // sectionCard.appendChild(newCard);
+    buttonDelete.addEventListener('click', function (evt) {
+        
+        evt.target.parentNode.remove();
+    });
+
+    buttonLike.addEventListener('click', function() {
+        buttonLike.classList.toggle('card__button-like_active');
+    });
 }
 
 // ДОБАВЛЕНИЕ 6 КАРТОЧЕК
