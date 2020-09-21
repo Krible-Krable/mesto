@@ -23,3 +23,15 @@
     opacity: 0.8;
     cursor: pointer;
 }
+
+
+
+@media (max-width: 767px) {
+    .popup__button-save {
+      font-size: 14px;
+      line-height: 17px;
+      margin-top: 16px;
+      height: 40px;
+       
+  }
+} 

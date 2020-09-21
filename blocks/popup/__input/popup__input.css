@@ -21,3 +21,14 @@
     outline: 0; 
 }
 
+
+@media (max-width: 767px) {
+    .popup__input {
+       padding-bottom: 12px;
+       margin-bottom: 20px;
+       font-size: 12px;
+       line-height: 15px;
+  }
+} 
+
+
