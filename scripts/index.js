@@ -155,7 +155,7 @@ function addCard(mestoValue, linkValue) {
     });
     
     sectionCard.prepend(newCard);
-    sectionCard.appendChild(newCard);
+    // sectionCard.appendChild(newCard);
     
     buttonDelete.addEventListener('click', function (evt) {
         
