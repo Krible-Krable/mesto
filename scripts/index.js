@@ -154,8 +154,8 @@ function addCard(mestoValue, linkValue) {
         openImgPopup(linkValue, mestoValue);
     });
     
-    sectionCard.appendChild(newCard);
     sectionCard.prepend(newCard);
+    sectionCard.appendChild(newCard);
     
     buttonDelete.addEventListener('click', function (evt) {
         
