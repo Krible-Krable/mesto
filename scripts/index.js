@@ -18,9 +18,6 @@ let bioUser = document.querySelector('.profile__bio');
 const sectionCard = document.querySelector('.content');
 const cardTemplate = document.querySelector('#card-template').content; //темплейт карточки
 
-// let mestoName = document.querySelector('.card__heading');
-// let mestoLink = document.querySelector('.card__foto');
-
 const imgLink = document.querySelector('.popup__img');
 const labelImg = document.querySelector('.popup__img-label');
 
@@ -29,6 +26,35 @@ let inputUserBio = document.querySelector('.popup__input_type_bio');
 
 let inputMesto = document.querySelector('.popup__input_type_place');
 let inputLink = document.querySelector('.popup__input_type_link');
+
+//массив карточек
+
+const initialCards = [
+    {
+        name: 'Архыз',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+    },
+    {
+        name: 'Челябинская область',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+    },
+    {
+        name: 'Иваново',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+    },
+    {
+        name: 'Камчатка',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+    },
+    {
+        name: 'Холмогорский район',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+    },
+    {
+        name: 'Байкал',
+        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+    }
+];
 // __________________ЭТО ОТКРЫТИЕ И ЗАКРЫТИЕ ПОПАПА________________
 
 
@@ -60,6 +86,11 @@ const openImgPopup = function(src, label) {
 
 const closePopup = function(popup) {
     popup.classList.remove('popup_is-opened');
+    popup.classList.add('popup_is-closing');
+
+    setTimeout(function() {
+        popup.classList.add('popup_is-closing');
+    }, 500);
 };
 
 
@@ -123,8 +154,9 @@ function addCard(mestoValue, linkValue) {
         openImgPopup(linkValue, mestoValue);
     });
     
+    sectionCard.appendChild(newCard);
     sectionCard.prepend(newCard);
-    // sectionCard.appendChild(newCard);
+    
     buttonDelete.addEventListener('click', function (evt) {
         
         evt.target.parentNode.remove();
@@ -136,36 +168,7 @@ function addCard(mestoValue, linkValue) {
 
 }
 
-// ДОБАВЛЕНИЕ 6 КАРТОЧЕК
-
-const initialCards = [
-    {
-        name: 'Архыз',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-    },
-    {
-        name: 'Челябинская область',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-    },
-    {
-        name: 'Иваново',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-    },
-    {
-        name: 'Камчатка',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-    },
-    {
-        name: 'Холмогорский район',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-    },
-    {
-        name: 'Байкал',
-        link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-    }
-];
-
-
+//добавление массива
 
 function createCard(initialCards) {
     initialCards.forEach(function(item) {
@@ -174,4 +177,6 @@ function createCard(initialCards) {
 }
 
 createCard(initialCards);
+
+
 
