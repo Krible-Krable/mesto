@@ -89,7 +89,7 @@ const closePopup = function(popup) {
     popup.classList.add('popup_is-closing');
 
     setTimeout(function() {
-        popup.classList.add('popup_is-closing');
+        popup.classList.remove('popup_is-closing');
     }, 500);
 };
 
