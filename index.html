@@ -44,8 +44,8 @@
                  <button class="popup__button-close" type="button"></button>
                 <form class="popup__form" name="edit_profile">
                     <h2 class="popup__title">Редактировать профиль</h2>
-                    <input type="text" class="popup__input popup__input_type_name" placeholder="" value="" name="profile__name">
-                    <input type="text" class="popup__input popup__input_type_bio" placeholder="" value="" name="profile__bio">
+                    <input type="text" class="popup__input popup__input_type_name" placeholder=""  name="profile__name" required>
+                    <input type="text" class="popup__input popup__input_type_bio" placeholder=""  name="profile__bio" required>
                     <button type="submit" value="Сохранить" class="popup__button-save">Сохранить</button>
                 </form>
             </div>
@@ -58,8 +58,8 @@
                 <button class="popup__button-close" type="button"></button>
                 <form class="popup__form" name="edit_card">
                     <h2 class="popup__title">Новое место</h2>
-                    <input type="text" class="popup__input popup__input_type_place" placeholder="Название" value="" name="popup__place">
-                    <input type="text" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку" value="" name="popap__link">
+                    <input type="text" class="popup__input popup__input_type_place" placeholder="Название" name="popup__place" required>
+                    <input type="url" class="popup__input popup__input_type_link" placeholder="Ссылка на картинку"  name="popap__link" required>
                     <button type="submit" value="Создать" class="popup__button-save">Создать</button>
                 </form>
             </div>

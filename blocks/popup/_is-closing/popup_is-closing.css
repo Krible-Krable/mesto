@@ -1,3 +1,4 @@
 .popup_is-closing {
     visibility: visible;
+    opacity: 0;
 }
