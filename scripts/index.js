@@ -77,11 +77,6 @@ function openImgPopup(src, label) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_is-opened');
-    // popup.classList.add('popup_is-closing');
-    // popup.classList.remove('popup_is-closing');
-    // setTimeout(function() {
-    //     popup.classList.remove('popup_is-closing');
-    // }, 500);
 }
 
 // ______________СОХРАНЕНИЕ__________
