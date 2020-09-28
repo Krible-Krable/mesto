@@ -8,7 +8,10 @@
     margin-block-end: 0;
     min-width: 295px;
     margin-right: 16px;
+    
     text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 @media (max-width: 767px) {

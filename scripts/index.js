@@ -21,11 +21,11 @@ const cardTemplate = document.querySelector('#card-template').content; //тем�
 const imgLink = document.querySelector('.popup__img');
 const labelImg = document.querySelector('.popup__img-label');
 
-let inputUserName = document.querySelector('.popup__input_type_name');
-let inputUserBio = document.querySelector('.popup__input_type_bio');
+const inputUserName = document.querySelector('.popup__input_type_name');
+const inputUserBio = document.querySelector('.popup__input_type_bio');
 
-let inputMesto = document.querySelector('.popup__input_type_place');
-let inputLink = document.querySelector('.popup__input_type_link');
+const inputMesto = document.querySelector('.popup__input_type_place');
+const inputLink = document.querySelector('.popup__input_type_link');
 
 //массив карточек
 
@@ -93,7 +93,7 @@ function saveForm(evt) {
 function saveCard(evt) {
     evt.preventDefault();
 
-    addCard(inputMesto.value, inputLink.value);
+    prependToCardSections(addCard(inputMesto.value, inputLink.value));
     closePopup(cardPopup);
     editCardForm.reset();
 }
@@ -142,8 +142,6 @@ function addCard(mestoValue, linkValue) {
     newCard.querySelector('.card__heading').innerText = mestoValue;
     cardFoto.src = linkValue;
     cardFoto.setAttribute('alt', mestoValue);  
-    
-    prependToCardSections(newCard);
    
     cardFoto.addEventListener('click', function() {
         openPopup(imgPopup);
@@ -158,17 +156,19 @@ function addCard(mestoValue, linkValue) {
         buttonLike.classList.toggle('card__button-like_active');
     });
 
+    return newCard;
 }
 
 //добавление массива
 
 function createCard(initialCards) {
     initialCards.forEach(function(item) {
-       addCard(item.name, item.link);
+    prependToCardSections(addCard(item.name, item.link)); //это было в адд
     });
 }
 
 createCard(initialCards);
+
 
 
 
