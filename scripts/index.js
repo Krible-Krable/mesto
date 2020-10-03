@@ -78,8 +78,25 @@ function openImgPopup(src, label) {
 function closePopup(popup) {
     popup.classList.remove('popup_is-opened');
     const form = popup.querySelector('.popup__form');
-    form.reset();
+    form.reset(); //обработчик в validate =>
 }
+
+function exiteFromPopup(popup) {
+
+    document.addEventListener('keydown', function (evt) {
+        if (evt.keyCode == 27) {
+            closePopup(popup);
+        }
+    });
+
+    popup.addEventListener('click', function (evt) {
+        if (evt.target === popup) {
+            closePopup(popup);
+        }
+    });
+}
+exiteFromPopup(profilePopup);
+exiteFromPopup(cardPopup);
 
 
 // ______________СОХРАНЕНИЕ__________
