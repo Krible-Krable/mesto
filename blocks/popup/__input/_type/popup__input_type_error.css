@@ -9,8 +9,19 @@
     /* left: 0; */
     /* top: calc(100% + 5px); */
     transition: opacity 0.3s;
-    /* margin-bottom: 30px;
-    padding-top: 5px; */
-
+    /* padding-top: 5px; */
+    margin-top: -23px;
+    margin-bottom: 30px;
     color: #FF0000;
+    opacity: 1;
 }
+
+
+@media (max-width: 767px) {
+    .popup__input_type_error {
+       margin-top: -18px;
+  }
+} 
+
+    
+

@@ -61,7 +61,7 @@ const initialCards = [
 //функции
 
 function openPopup(popup) {
-    popup.classList.add('popup_is-opened');   //открытие попапов
+    popup.classList.add('popup_is-opened'); //открытие попапов
 }
 
 
@@ -77,7 +77,10 @@ function openImgPopup(src, label) {
 
 function closePopup(popup) {
     popup.classList.remove('popup_is-opened');
+    const form = popup.querySelector('.popup__form');
+    form.reset();
 }
+
 
 // ______________СОХРАНЕНИЕ__________
 
@@ -95,7 +98,7 @@ function saveCard(evt) {
 
     prependToCardSections(addCard(inputMesto.value, inputLink.value));
     closePopup(cardPopup);
-    editCardForm.reset();
+    // editCardForm.reset();
 }
 
 function prependToCardSections(newCard) {
@@ -109,6 +112,7 @@ popupOpenButton.addEventListener('click', function () {
     openProfilePopup();
     openPopup(profilePopup);
 });
+
 popupCloseButton.addEventListener('click', function () {
     closePopup(profilePopup);
 });
@@ -117,9 +121,10 @@ popupCloseButton.addEventListener('click', function () {
 popupAddCard.addEventListener('click', function () {
     openPopup(cardPopup);
 });
+
 popupCloseCard.addEventListener('click', function () {
     closePopup(cardPopup);
-    editCardForm.reset();
+    // editCardForm.reset();
 });
 
 
