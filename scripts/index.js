@@ -125,6 +125,16 @@ function keydownHandler(evt) {
     }
 }
 
+function enableValidation(obj) {
+    const formList = Array.from(document.querySelectorAll(obj.formElement));
+
+    formList.forEach((formElement) => {
+        const formValidator = new FormValidator(obj, formElement);
+        formValidator.enableValidation();
+    });
+
+};
+
 // ______________СОХРАНЕНИЕ__________
 
 function saveForm(evt) {
@@ -139,12 +149,17 @@ function saveForm(evt) {
 function saveCard(evt) {
     evt.preventDefault();
 
-    prependToCardSections(addCard(inputMesto.value, inputLink.value));
+    
+    // prependToCardSections(addCard(inputMesto.value, inputLink.value)); было изначально
+    const card = new Card(inputMesto.value, inputLink.value, '#card-template');
+    prependToCardSections(card.getCardElem()); 
+
     closePopup(cardPopup);
 }
 
 function prependToCardSections(newCard) {
     sectionCard.prepend(newCard);
+    // sectionCard.prepend(card);
 }
 
 //обработчики
@@ -194,39 +209,6 @@ imgPopup.addEventListener('click', function (evt) {
 
 
 
-//_____________________РАБОТА С КАРТОЧКАМИ_______________________
-
-
-
-
-// function addCard(mestoValue, linkValue) {
-//     const newCard = cardTemplate.cloneNode(true);
-
-//     const buttonLike = newCard.querySelector('.card__button-like');
-//     const buttonDelete = newCard.querySelector('.card__button-delete');
-//     const cardFoto = newCard.querySelector('.card__foto');
-//     newCard.querySelector('.card__heading').innerText = mestoValue;
-//     cardFoto.src = linkValue;
-//     cardFoto.setAttribute('alt', mestoValue);
-
-//     cardFoto.addEventListener('click', function () {
-//         openPopup(imgPopup);
-//         openImgPopup(linkValue, mestoValue);
-//     });
-
-//     buttonDelete.addEventListener('click', function (evt) {
-//         evt.target.parentNode.remove();
-//     });
-
-//     buttonLike.addEventListener('click', function () {
-//         buttonLike.classList.toggle('card__button-like_active');
-//     });
-
-//     return newCard;
-// }
-
-//добавление массива
-
 function createCard(initialCards) {
     initialCards.forEach(function (item) {
         const card = new Card(item.name, item.link, '#card-template');
@@ -235,6 +217,15 @@ function createCard(initialCards) {
 }
 
 createCard(initialCards);
+
+
+enableValidation({
+    formElement: '.popup__form',
+    inputElement: '.popup__input',
+    inactiveButtonClass: 'popup__button-disabled',
+    submitButton: '.popup__button-save',
+    inputErrorClass: 'popup__input_type_error',
+}); 
 
 
 
