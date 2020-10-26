@@ -1,33 +1,3 @@
-//  const config = {
-//      profilePopup: document.querySelector('.popup_profile'),
-//      cardPopup: document.querySelector('.popup_card'),
-//      imgPopup: document.querySelector('.popup_img-open'),
-
-//      popupOpenButton: document.querySelector('.profile__edit-button'),
-//      popupAddCard: document.querySelector('.profile__add-button'),
-//      popupCloseButton: document.querySelector('.popup_profile .popup__button-close'),
-//      popupCloseCard: document.querySelector('.popup_card .popup__button-close'),
-//      popupCloseImg: document.querySelector('.popup_img-open .popup__button-close'),
-
-//      formElement: document.querySelector('.popup__form'),
-//      editCardForm: document.querySelector('.popup_card .popup__form'),
-
-//      nameUser: document.querySelector('.profile__name'),
-//      bioUser: document.querySelector('.profile__bio'),
-
-//      sectionCard: document.querySelector('.content'),
-//      cardTemplate: document.querySelector('#card-template').content, //темплейт карточки
-
-//      imgLink: document.querySelector('.popup__img'),
-//      labelImg: document.querySelector('.popup__img-label'),
-
-//      inputUserName: document.querySelector('.popup__input_type_name'),
-//      inputUserBio: document.querySelector('.popup__input_type_bio'),
-
-//      inputMesto: document.querySelector('.popup__input_type_place'),
-//      inputLink: document.querySelector('.popup__input_type_link'),
-// }
-
 import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js'
 
@@ -151,8 +121,6 @@ function saveForm(evt) {
 function saveCard(evt) {
     evt.preventDefault();
 
-    
-    // prependToCardSections(addCard(inputMesto.value, inputLink.value)); было изначально
     const card = new Card(inputMesto.value, inputLink.value, '#card-template');
     prependToCardSections(card.getCardElem()); 
 
@@ -161,7 +129,6 @@ function saveCard(evt) {
 
 function prependToCardSections(newCard) {
     sectionCard.prepend(newCard);
-    // sectionCard.prepend(card);
 }
 
 //обработчики
