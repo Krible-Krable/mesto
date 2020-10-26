@@ -1,4 +1,4 @@
-class Card {
+export class Card {
     constructor(text, img, templateSelector) {
         this._img = img;
         this._text = text;

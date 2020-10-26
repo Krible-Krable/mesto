@@ -28,6 +28,8 @@
 //      inputLink: document.querySelector('.popup__input_type_link'),
 // }
 
+import {Card} from './Card.js'
+import {FormValidator} from './FormValidator.js'
 
 const profilePopup = document.querySelector('.popup_profile');
 const cardPopup = document.querySelector('.popup_card');

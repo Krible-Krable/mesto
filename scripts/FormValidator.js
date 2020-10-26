@@ -1,4 +1,4 @@
-class FormValidator {
+export class FormValidator {
     constructor(obj, formElement) {
         this._obj = obj;
         this._formElement = formElement;
@@ -55,7 +55,7 @@ class FormValidator {
             });
         });
         //очистить поля ошибок на каждом инпуте
-        formElement.addEventListener('reset', () => {
+        this._formElement.addEventListener('reset', () => {
             inputList.forEach((inputElement) => {
                 this._hideInputError(inputElement);
             });
