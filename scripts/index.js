@@ -78,6 +78,11 @@ function openImgPopup(src, label) {
     labelImg.textContent = label;
 }
 
+function onCardPhotoClick (img, text) {
+    openPopup(imgPopup);
+    openImgPopup(img, text);
+}
+
 function closePopup(popup) {
     popup.classList.remove('popup_is-opened');
     const form = popup.querySelector('.popup__form');
@@ -121,7 +126,7 @@ function saveForm(evt) {
 function saveCard(evt) {
     evt.preventDefault();
 
-    const card = new Card(inputMesto.value, inputLink.value, '#card-template');
+    const card = new Card(inputMesto.value, inputLink.value, '#card-template', onCardPhotoClick);
     prependToCardSections(card.getCardElem()); 
 
     closePopup(cardPopup);
@@ -180,7 +185,7 @@ imgPopup.addEventListener('click', function (evt) {
 
 function createCard(initialCards) {
     initialCards.forEach(function (item) {
-        const card = new Card(item.name, item.link, '#card-template');
+        const card = new Card(item.name, item.link, '#card-template', onCardPhotoClick);
         prependToCardSections(card.getCardElem()); 
     });
 }

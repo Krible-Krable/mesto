@@ -1,8 +1,9 @@
 export class Card {
-    constructor(text, img, templateSelector) {
+    constructor(text, img, templateSelector, onPhotoClick) {
         this._img = img;
         this._text = text;
         this._templateSelector = templateSelector;
+        this._onPhotoClick = onPhotoClick;
 
         this._addMarkup();
         this._addListener();
@@ -30,8 +31,7 @@ export class Card {
     }
 
     _handlerClickPopup = () => {
-        openPopup(imgPopup);
-        openImgPopup(this._img, this._text);
+        this._onPhotoClick(this._img, this._text);
     }
 
     _handlerClickDelete(evt) {
