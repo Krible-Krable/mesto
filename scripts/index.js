@@ -14,13 +14,11 @@ const popupCloseCard = document.querySelector('.popup_card .popup__button-close'
 const popupCloseImg = document.querySelector('.popup_img-open .popup__button-close');
 
 const formElement = document.querySelector('.popup__form');
-const editCardForm = document.querySelector('.popup_card .popup__form');
 
 const nameUser = document.querySelector('.profile__name');
 const bioUser = document.querySelector('.profile__bio');
 
 const sectionCard = document.querySelector('.content');
-const cardTemplate = document.querySelector('#card-template').content; //темплейт карточки
 
 const imgLink = document.querySelector('.popup__img');
 const labelImg = document.querySelector('.popup__img-label');
