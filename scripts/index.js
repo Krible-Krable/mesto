@@ -1,6 +1,8 @@
 import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js'
 
+const ESCAPE_KEYCODE = 27;
+
 const profilePopup = document.querySelector('.popup_profile');
 const cardPopup = document.querySelector('.popup_card');
 const imgPopup = document.querySelector('.popup_img-open');
@@ -28,6 +30,7 @@ const inputUserBio = document.querySelector('.popup__input_type_bio');
 
 const inputMesto = document.querySelector('.popup__input_type_place');
 const inputLink = document.querySelector('.popup__input_type_link');
+
 
 //массив карточек
 
@@ -97,7 +100,7 @@ function closePopup(popup) {
 function keydownHandler(evt) {
     const popup = document.querySelector('.popup_is-opened');
 
-    if (popup && evt.keyCode == 27) {
+    if (popup && evt.keyCode == ESCAPE_KEYCODE) {
         closePopup(popup);
     }
 }
