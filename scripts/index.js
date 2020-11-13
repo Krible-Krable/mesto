@@ -1,5 +1,10 @@
-import {Card} from './Card.js'
-import {FormValidator} from './FormValidator.js'
+import { Card } from './Card.js'
+import { FormValidator } from './FormValidator.js'
+import { Section } from './Section.js';
+import { Popup } from './Popup.js';
+import { PopupWithForm } from './PopupWithForm.js';
+import { PopupWithImage } from './PopupWithImage.js';
+import { UserInfo } from './UserInfo.js';
 
 const ESCAPE_KEYCODE = 27;
 
@@ -15,16 +20,16 @@ const popupCloseImg = document.querySelector('.popup_img-open .popup__button-clo
 
 const formElement = document.querySelector('.popup__form');
 
-const nameUser = document.querySelector('.profile__name');
-const bioUser = document.querySelector('.profile__bio');
+// const nameUser = document.querySelector('.profile__name');
+// const bioUser = document.querySelector('.profile__bio');
 
 const sectionCard = document.querySelector('.content');
 
-const imgLink = document.querySelector('.popup__img');
-const labelImg = document.querySelector('.popup__img-label');
+// const imgLink = document.querySelector('.popup__img');
+// const labelImg = document.querySelector('.popup__img-label');
 
-const inputUserName = document.querySelector('.popup__input_type_name');
-const inputUserBio = document.querySelector('.popup__input_type_bio');
+// const inputUserName = document.querySelector('.popup__input_type_name');
+// const inputUserBio = document.querySelector('.popup__input_type_bio');
 
 const inputMesto = document.querySelector('.popup__input_type_place');
 const inputLink = document.querySelector('.popup__input_type_link');
@@ -63,10 +68,10 @@ const initialCards = [
 
 //функции
 
-function openPopup(popup) {
-    popup.classList.add('popup_is-opened'); //открытие попапов
-    document.addEventListener('keydown', keydownHandler);
-}
+// function openPopup(popup) {
+//     popup.classList.add('popup_is-opened'); //открытие попапов
+//     document.addEventListener('keydown', keydownHandler);
+// }
 
 
 function openProfilePopup() {
@@ -74,34 +79,34 @@ function openProfilePopup() {
     inputUserBio.value = bioUser.textContent;
 }
 
-function openImgPopup(src, label) {
-    imgLink.src = src;
-    labelImg.textContent = label;
-}
+// function openImgPopup(src, label) {
+//     imgLink.src = src;
+//     labelImg.textContent = label;
+// }
 
-function onCardPhotoClick (img, text) {
+function onCardPhotoClick(img, text) {
     openPopup(imgPopup);
     openImgPopup(img, text);
 }
 
-function closePopup(popup) {
-    popup.classList.remove('popup_is-opened');
-    const form = popup.querySelector('.popup__form');
+// function closePopup(popup) {
+//     popup.classList.remove('popup_is-opened');
+//     const form = popup.querySelector('.popup__form');
 
-    if (form) {
-        form.reset(); //обработчик в validate =>
-    }
+//     if (form) {
+//         form.reset(); //обработчик в validate =>
+//     }
 
-    document.removeEventListener('keydown', keydownHandler);
-}
+//     document.removeEventListener('keydown', keydownHandler);
+// }
 
-function keydownHandler(evt) {
-    const popup = document.querySelector('.popup_is-opened');
+// function keydownHandler(evt) {
+//     const popup = document.querySelector('.popup_is-opened');
 
-    if (popup && evt.keyCode == ESCAPE_KEYCODE) {
-        closePopup(popup);
-    }
-}
+//     if (popup && evt.keyCode == ESCAPE_KEYCODE) {
+//         closePopup(popup);
+//     }
+// }
 
 function enableValidation(obj) {
     const formList = Array.from(document.querySelectorAll(obj.formElement));
@@ -128,7 +133,7 @@ function saveCard(evt) {
     evt.preventDefault();
 
     const card = new Card(inputMesto.value, inputLink.value, '#card-template', onCardPhotoClick);
-    prependToCardSections(card.getCardElem()); 
+    prependToCardSections(card.getCardElem());
 
     closePopup(cardPopup);
 }
@@ -161,7 +166,7 @@ popupCloseImg.addEventListener('click', function () {
     closePopup(imgPopup);
 });
 
-formElement.addEventListener('submit', saveForm);
+formElement.addEventListener('submit', saveForm);//вот это в попапвизформ?
 cardPopup.addEventListener('submit', saveCard);
 
 profilePopup.addEventListener('click', function (evt) {
@@ -184,14 +189,23 @@ imgPopup.addEventListener('click', function (evt) {
 
 
 
-function createCard(initialCards) {
-    initialCards.forEach(function (item) {
-        const card = new Card(item.name, item.link, '#card-template', onCardPhotoClick);
-        prependToCardSections(card.getCardElem()); 
-    });
-}
+// function createCard(initialCards) {
+//     initialCards.forEach(function (item) {
+//         const card = new Card(item.name, item.link, '#card-template', onCardPhotoClick);
+//         prependToCardSections(card.getCardElem()); 
+//     });
+// }
 
-createCard(initialCards);
+// createCard(initialCards);
+
+const section = new Section({
+    items: initialCards, renderer(item) {
+        const card = new Card(item.name, item.link, '#card-template', onCardPhotoClick);
+        return card.getCardElem();
+    }
+}, '.content');
+
+section.renderCards();
 
 
 enableValidation({
@@ -200,7 +214,7 @@ enableValidation({
     inactiveButtonClass: 'popup__button-disabled',
     submitButton: '.popup__button-save',
     inputErrorClass: 'popup__input_type_error',
-}); 
+});
 
 
 
