@@ -183,15 +183,31 @@ const userInfo = new UserInfo({ selectorName: '.profile__name', selectorBio: '.p
 
 const popupWithFormProfile = new PopupWithForm('.popup_profile', function({ name, bio }) {
     userInfo.setUserInfo({ name, bio });
+}, {
+        name: '.popup__input_type_name',
+        bio: '.popup__input_type_bio'
 });
+
 
 editProfileButton.addEventListener('click', function () {
     popupWithFormProfile.open();
 });
 
 
-const popupWithFormCard = new PopupWithForm('.popup_card');
+const popupWithFormCard = new PopupWithForm('.popup_card', function({url, label}) {
+    const card = new Card(label, url, '#card-template', function () {
+        popupWithImage.setSrc(url, label);
+        popupWithImage.open()
+    });
+    section.addItem(card.getCardElem());
+}, {
+    url: '.popup__input_type_link',
+    label: '.popup__input_type_place'
+});
 
+popupAddCard.addEventListener('click', function () {
+    popupWithFormCard.open();
+});
 
 
 const section = new Section({

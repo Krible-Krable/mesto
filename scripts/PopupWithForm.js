@@ -1,21 +1,22 @@
 import { Popup } from './Popup.js';
  
  export class PopupWithForm extends Popup {
-     constructor(selectorPopup, callback) {
+     constructor(selectorPopup, callback, inputSelectors) {
         super(selectorPopup);
 
         this.callback = callback;
+        this.inputSelectors = inputSelectors;
     }
 
     _getInputValues() {
-        //который собирает данные всех полей формы.
-        const inputUserName = document.querySelector(`${this.selectorPopup} .popup__input_type_name`);
-        const inputUserBio = document.querySelector(`${this.selectorPopup} .popup__input_type_bio`);
+        const inputValues = {};
 
-        return {
-            name: inputUserName.value,
-            bio: inputUserBio.value
-        };
+        Object.keys(this.inputSelectors).forEach((key) => {
+            inputValues[key] = this.popup.querySelector(this.inputSelectors[key]).value;
+        });
+        //который собирает данные всех полей формы.
+
+        return inputValues;
     }
 
     setEventListeners() {
