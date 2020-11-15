@@ -10,7 +10,7 @@ export class Popup {
         document.addEventListener('keydown', this._handleEscClose);
     }
 
-    close = () => {
+    close () {
         this.popup.classList.remove('popup_is-opened');
 
         document.removeEventListener('keydown', this._handleEscClose);
@@ -30,7 +30,7 @@ export class Popup {
         //тут ретурн? 
         //добавляет слушатель клика иконке закрытия попапа.
         const popupCloseButton = this.popup.querySelector(`.popup__button-close`);
-        popupCloseButton.addEventListener('click', this.close);
+        popupCloseButton.addEventListener('click', this.close.bind(this));
     }
 
 }

@@ -10,8 +10,8 @@ import { UserInfo } from './UserInfo.js';
 // const cardPopup = document.querySelector('.popup_card');
 // const imgPopup = document.querySelector('.popup_img-open');
 
-// const popupOpenButton = document.querySelector('.profile__edit-button');
-// const popupAddCard = document.querySelector('.profile__add-button');
+const editProfileButton = document.querySelector('.profile__edit-button');
+const popupAddCard = document.querySelector('.profile__add-button');
 // const popupCloseButton = document.querySelector('.popup_profile .popup__button-close');
 // const popupCloseCard = document.querySelector('.popup_card .popup__button-close');
 // const popupCloseImg = document.querySelector('.popup_img-open .popup__button-close');
@@ -117,10 +117,7 @@ const initialCards = [
 
 //обработчики
 
-// popupOpenButton.addEventListener('click', function () {
-//     openProfilePopup();
-//     openPopup(profilePopup);
-// });
+
 
 // popupCloseButton.addEventListener('click', function () {
 //     closePopup(profilePopup);
@@ -182,10 +179,14 @@ function enableValidation(obj) {
 };
 
 const popupWithImage = new PopupWithImage('.popup_img-open');
-const userInfo = new UserInfo();
+const userInfo = new UserInfo({ selectorName: '.profile__name', selectorBio: '.profile__bio' });
 
 const popupWithFormProfile = new PopupWithForm('.popup_profile', function({ name, bio }) {
     userInfo.setUserInfo({ name, bio });
+});
+
+editProfileButton.addEventListener('click', function () {
+    popupWithFormProfile.open();
 });
 
 

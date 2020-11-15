@@ -27,17 +27,19 @@ import { Popup } from './Popup.js';
 
         form.addEventListener('submit', () => {
             this.callback(this._getInputValues());
+            this.close();
         });
         return super.setEventListeners();
     }
 
-    close = () => {
+    close() {
          const popup = document.querySelector(this.selectorPopup);
          const form = popup.querySelector('.popup__form');
 
          if (form) {
              form.reset(); //обработчик в validate =>
          }
+
          return super.close();
     }
 }
