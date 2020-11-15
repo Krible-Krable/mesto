@@ -1,5 +1,5 @@
 .popup__button-close {
-    background: url('./../../../images/CloseIconPopup.svg') center;
+    background: url('./../../../../../images/CloseIconPopup.svg') center;
     background-repeat: no-repeat;
     position: absolute;
     right: -10%;

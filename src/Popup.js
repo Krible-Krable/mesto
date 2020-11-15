@@ -6,29 +6,26 @@ export class Popup {
     }
 
     open() {
-        this.popup.classList.add('popup_is-opened'); //открытие попапов
-        document.addEventListener('keydown', this._handleEscClose);
+        this.popup.classList.add('popup_is-opened'); 
+        document.addEventListener('keydown', this._handleEscClose.bind(this));
     }
 
     close () {
         this.popup.classList.remove('popup_is-opened');
 
-        document.removeEventListener('keydown', this._handleEscClose);
+        document.removeEventListener('keydown', this._handleEscClose.bind(this));
     }
 
 
-    _handleEscClose = (evt) => {
+    _handleEscClose(evt) {
         const ESCAPE_KEYCODE = 27;
 
-        //возможно сюда this.selectorPopup и никакого попап
         if (evt.keyCode == ESCAPE_KEYCODE) {
             this.close();
         }
     }
 
     setEventListeners() {
-        //тут ретурн? 
-        //добавляет слушатель клика иконке закрытия попапа.
         const popupCloseButton = this.popup.querySelector(`.popup__button-close`);
         popupCloseButton.addEventListener('click', this.close.bind(this));
     }

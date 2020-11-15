@@ -17,7 +17,7 @@ export class UserInfo {
     setUserInfo({name, bio}) {
         const nameUser = document.querySelector(this.selectorName);
         const bioUser = document.querySelector(this.selectorBio);
-        //сюда разве не селектор нейм? и селектор био?
+
         nameUser.textContent = name;
         bioUser.textContent = bio; 
     }

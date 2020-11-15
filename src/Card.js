@@ -23,14 +23,14 @@ export class Card {
     }
 
     _addListener() {
-        this._cardFoto.addEventListener('click', this._handlerClickPopup);
+        this._cardFoto.addEventListener('click', this._handlerClickPopup.bind(this));
 
         this._buttonDelete.addEventListener('click', this._handlerClickDelete);
 
-        this._buttonLike.addEventListener('click', this._handlerClickLike); 
+        this._buttonLike.addEventListener('click', this._handlerClickLike.bind(this)); 
     }
 
-    _handlerClickPopup = () => {
+    _handlerClickPopup() {
         this._onPhotoClick(this._img, this._text);
     }
 
@@ -38,7 +38,7 @@ export class Card {
         evt.target.parentNode.remove();
     }
 
-    _handlerClickLike = () => {
+    _handlerClickLike() {
         this._buttonLike.classList.toggle('card__button-like_active');
     }
 

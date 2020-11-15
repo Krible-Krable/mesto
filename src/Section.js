@@ -15,7 +15,7 @@ export class Section {
     }
 
     addItem(newCard) {
-        this.sectionCard.prepend(newCard);  //который принимает DOM-элемент и добавляет его в контейнер.
+        this.sectionCard.prepend(newCard);  //принимает DOM-элемент и добавляет его в контейнер.
     }
 
 }

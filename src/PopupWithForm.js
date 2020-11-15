@@ -20,8 +20,6 @@ import { Popup } from './Popup.js';
     }
 
     setEventListeners() {
-        // const popupCloseButton = document.querySelector(`${this.selectorPopup} .popup__button-close`);
-        // popupCloseButton.addEventListener('click', this.close);
         const popup = document.querySelector(this.selectorPopup);
 
         const form = popup.querySelector('.popup__form');
