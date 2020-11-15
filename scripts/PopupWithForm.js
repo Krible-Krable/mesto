@@ -1,3 +1,5 @@
+import { Popup } from './Popup.js';
+ 
  export class PopupWithForm extends Popup {
      constructor(selectorPopup, callback) {
         super(selectorPopup);
@@ -23,7 +25,9 @@
 
         const form = popup.querySelector('.popup__form');
 
-        form.addEventListener('submit', this.callback);
+        form.addEventListener('submit', () => {
+            this.callback(this._getInputValues());
+        });
         return super.setEventListeners();
     }
 
