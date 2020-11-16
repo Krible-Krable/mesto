@@ -6,13 +6,14 @@ import { Popup } from './Popup.js';
 
         this.callback = callback;
         this.inputSelectors = inputSelectors;
+        this._form = this._popup.querySelector('.popup__form');
     }
 
     _getInputValues() {
         const inputValues = {};
 
         Object.keys(this.inputSelectors).forEach((key) => {
-            inputValues[key] = this.popup.querySelector(this.inputSelectors[key]).value;
+            inputValues[key] = this._popup.querySelector(this.inputSelectors[key]).value;
         });
         //который собирает данные всех полей формы.
 
@@ -20,11 +21,7 @@ import { Popup } from './Popup.js';
     }
 
     setEventListeners() {
-        const popup = document.querySelector(this.selectorPopup);
-
-        const form = popup.querySelector('.popup__form');
-
-        form.addEventListener('submit', () => {
+        this._form.addEventListener('submit', () => {
             this.callback(this._getInputValues());
             this.close();
         });
@@ -32,12 +29,7 @@ import { Popup } from './Popup.js';
     }
 
     close() {
-         const popup = document.querySelector(this.selectorPopup);
-         const form = popup.querySelector('.popup__form');
-
-         if (form) {
-             form.reset(); //обработчик в validate =>
-         }
+        this._form.reset();
 
          return super.close();
     }

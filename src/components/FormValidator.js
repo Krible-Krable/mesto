@@ -31,17 +31,19 @@ export class FormValidator {
     }
 
     _submitButtonSelector(inputList, buttonElement) {
-        const hasInValidInput = inputList.some(
-            (inputElement) => !inputElement.validity.valid
-        );
-
-        if (hasInValidInput) {
+        if (this._hasInValidInput(inputList)) {
             buttonElement.classList.add(this._obj.inactiveButtonClass);
             buttonElement.setAttribute('disabled', true);
         } else {
             buttonElement.classList.remove(this._obj.inactiveButtonClass);
             buttonElement.removeAttribute('disabled');
         }
+    }
+
+    _hasInValidInput(inputList) {
+        return inputList.some(
+            (inputElement) => !inputElement.validity.valid
+        );  
     }
 
     _setEventListeners() {

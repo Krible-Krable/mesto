@@ -1,11 +1,11 @@
-import './styles/index.css';
+import './index.css';
 
-import { Card } from './Card.js'
-import { FormValidator } from './FormValidator.js'
-import { Section } from './Section.js';
-import { PopupWithForm } from './PopupWithForm.js';
-import { PopupWithImage } from './PopupWithImage.js';
-import { UserInfo } from './UserInfo.js';
+import { Card } from './../components/Card.js'
+import { FormValidator } from './../components/FormValidator.js'
+import { Section } from './../components/Section.js';
+import { PopupWithForm } from './../components/PopupWithForm.js';
+import { PopupWithImage } from './../components/PopupWithImage.js';
+import { UserInfo } from './../components/UserInfo.js';
 
 
 const editProfileButton = document.querySelector('.profile__edit-button');
@@ -53,6 +53,7 @@ function enableValidation(obj) {
 };
 
 const popupWithImage = new PopupWithImage('.popup_img-open');
+    popupWithImage.setEventListeners();
 const userInfo = new UserInfo({ selectorName: '.profile__name', selectorBio: '.profile__bio' });
 
 const popupWithFormProfile = new PopupWithForm('.popup_profile', function({ name, bio }) {
@@ -61,6 +62,7 @@ const popupWithFormProfile = new PopupWithForm('.popup_profile', function({ name
         name: '.popup__input_type_name',
         bio: '.popup__input_type_bio'
 });
+popupWithFormProfile.setEventListeners();
 
 
 editProfileButton.addEventListener('click', function () {
@@ -78,6 +80,7 @@ const popupWithFormCard = new PopupWithForm('.popup_card', function({url, label}
     url: '.popup__input_type_link',
     label: '.popup__input_type_place'
 });
+popupWithFormCard.setEventListeners();
 
 popupAddCard.addEventListener('click', function () {
     popupWithFormCard.open();
@@ -91,7 +94,7 @@ const section = new Section({
             popupWithImage.open()
         });
 
-        return card.getCardElem();
+        section.addItem(card.getCardElem());
     }
 }, '.content');
 

@@ -10,17 +10,24 @@ export class Card {
     }
 
     _addMarkup() {
-        const cardTemplate = document.querySelector(this._templateSelector).content;
-        const newCard = cardTemplate.cloneNode(true);
-        this._cardElem = newCard;
-        this._buttonLike = newCard.querySelector('.card__button-like');
-        this._buttonDelete = newCard.querySelector('.card__button-delete');
-        this._cardFoto = newCard.querySelector('.card__foto');
+        this._cardElem = this._getCardTemplate();
+        this._buttonLike = this._cardElem .querySelector('.card__button-like');
+        this._buttonDelete = this._cardElem .querySelector('.card__button-delete');
+        this._cardFoto = this._cardElem .querySelector('.card__foto');
 
-        newCard.querySelector('.card__heading').innerText = this._text;
+        this._cardElem .querySelector('.card__heading').innerText = this._text;
         this._cardFoto.src = this._img;
         this._cardFoto.setAttribute('alt', this._text);
     }
+
+    _getCardTemplate() {
+        const cardElement = document
+            .querySelector(this._templateSelector)
+            .content
+            .cloneNode(true);
+
+        return cardElement;
+    } 
 
     _addListener() {
         this._cardFoto.addEventListener('click', this._handlerClickPopup.bind(this));

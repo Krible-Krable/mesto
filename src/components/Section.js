@@ -9,8 +9,7 @@ export class Section {
     renderCards() {
         //отрисовка всех элементов
         this.items.forEach((item) => {
-            const card = this.renderer(item);
-            this.addItem(card);
+            this.renderer(item);
         });
     }
 
