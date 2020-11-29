@@ -25,9 +25,17 @@ export class Popup {
         }
     }
 
+    _handleOverlayClick(evt) {
+        if (evt.target === this._popup) {
+            this.close();
+        }
+    }
+
     setEventListeners() {
         const popupCloseButton = this._popup.querySelector(`.popup__button-close`);
         popupCloseButton.addEventListener('click', this.close.bind(this));
+
+        this._popup.addEventListener('click', this._handleOverlayClick.bind(this));
     }
 
 }
