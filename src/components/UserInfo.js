@@ -11,11 +11,11 @@ export class UserInfo {
         return {
             name: this._nameUser.textContent,
             bio: this._bioUser.textContent,
-        };  
+        };
     }
 
-    setUserInfo({name, bio}) {
+    saveUserInfo({ name, bio }) {
         this._nameUser.textContent = name;
-        this._bioUser.textContent = bio; 
+        this._bioUser.textContent = bio;
     }
 }
