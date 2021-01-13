@@ -1,5 +1,6 @@
 import './index.css';
 
+
 import { Card } from './../components/Card.js'
 import { FormValidator } from './../components/FormValidator.js'
 import { Section } from './../components/Section.js';
@@ -27,11 +28,6 @@ const validationConfig = {
     submitButton: '.popup__button-save',
     inputErrorClass: 'popup__input_type_error',
 };
-
-
-
-
-
 
 
 //массив карточек
