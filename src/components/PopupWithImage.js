@@ -8,14 +8,17 @@ export class PopupWithImage extends Popup {
         this._labelImg = this._popup.querySelector('.popup__img-label'); 
     }
 
-    setSrc(src, label) {
-        this.src = src;
-        this.label = label;
-    }
+    // setSrc(src, label) {
+    //     this.src = src;
+    //     this.label = label;
+    // }
 
-    open() {
-        this._imgLink.src = this.src;
-        this._labelImg.textContent = this.label;
+    open(src, label) {
+        // this._imgLink.src = this.src;
+        // this._labelImg.textContent = this.label;
+       
+        this._imgLink.src = src;
+        this._labelImg.textContent = label;
 
         super.open();
     }
