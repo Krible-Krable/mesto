@@ -42,7 +42,17 @@ module.exports = {
                 test: /\.html$/,
                 loader: 'html-loader',
             },
-        ]
+        ],
+    },
+ 
+    mode: 'development',
+    devServer: {
+        // historyApiFallback: true,
+        contentBase: path.resolve(__dirname, './dist'),
+        open: true,
+        compress: true,
+        hot: true,
+        port: 8080,
     },
 
     plugins: [
