@@ -73,5 +73,11 @@ export class FormValidator {
 
         this._setEventListeners();   
     }
+
+    resetValidation() {
+        const submitButton = this._formElement.querySelector(this._obj.submitButton);
+        submitButton.classList.add(this._obj.inactiveButtonClass);
+        submitButton.setAttribute('disabled', true);
+    }
 }
 

@@ -10,6 +10,7 @@ export const popupInputBio = '.popup__input_type_bio';
 export const popupInputLink = '.popup__input_type_link';
 export const popupInputPlace = '.popup__input_type_place';
 export const cardTemplateId = '#card-template';
+export const contentSection = '.content';
 export const validationConfig = {
     formElement: '.popup__form',
     inputElement: '.popup__input',

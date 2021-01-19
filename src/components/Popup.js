@@ -15,7 +15,6 @@ export class Popup {
         document.removeEventListener('keydown', this._handleEscCloseBinded);
     }
 
-
     _handleEscClose(evt) {
         const ESCAPE_KEYCODE = 27;
 

@@ -10,9 +10,6 @@ export class PopupWithImage extends Popup {
     }
 
     open(src, label) {
-        // this._imgLink.src = this.src;
-        // this._labelImg.textContent = this.label;
-       
         this._imgLink.src = src;
         this._labelImg.textContent = label;
         this._imgLink.setAttribute('alt', label);

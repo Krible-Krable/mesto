@@ -13,6 +13,7 @@ popupInputBio,
 popupInputLink,
 popupInputPlace,
 cardTemplateId,
+contentSection,
 validationConfig 
 } from './../utils/constants.js';
 
@@ -28,9 +29,9 @@ import { UserInfo } from './../components/UserInfo.js';
 
 function createCard(label, url, selector) {
     const card = new Card(label, url, selector, function () {
-        popupWithImage.open(url, label)
+        popupWithImage.open(url, label);
     });
-    section.addItem(card.getCardElem());
+    return card; 
 }
 
 const popupWithImage = new PopupWithImage(imgOpenPopup);
@@ -50,17 +51,19 @@ const formValidator = new FormValidator(validationConfig, popupWithFormProfile.g
 formValidator.enableValidation();
 
 editProfileButton.addEventListener('click', function () {
-    const { name, bio } = userInfo.getUserInfo();
+    popupWithFormProfile.open();
 
-    popupWithFormProfile.open({
-        [popupInputName]: name,
-        [popupInputBio]: bio
-    });
+    const userData = userInfo.getUserInfo();
+
+    document.querySelector(popupInputName).value = userData.name;
+    document.querySelector(popupInputBio).value = userData.bio;
+    formValidator.resetValidation();
 });
 
 
 const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label }) {
-    createCard(label, url, cardTemplateId);
+    const card = createCard(label, url, cardTemplateId);
+    section.addItem(card.getCardElem());  
 }, {
         url: popupInputLink,
         label: popupInputPlace
@@ -72,14 +75,16 @@ validatorFormCard.enableValidation();
 
 popupAddCard.addEventListener('click', function () {
     popupWithFormCard.open();
+    validatorFormCard.resetValidation();
 });
 
 
 const section = new Section({
     items: initialCards, renderer(item) {
-        createCard(item.name, item.link, cardTemplateId);
+       const card = createCard(item.name, item.link, cardTemplateId);
+        section.addItem(card.getCardElem()); 
     }
-}, '.content');
+}, contentSection);
 
 section.renderCards();
 
