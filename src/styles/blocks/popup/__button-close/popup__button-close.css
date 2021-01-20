@@ -15,6 +15,11 @@
     top: -40px;
 }
 
+.popup_get-delete .popup__button-close {
+    right: -40px;
+    top: -40px;
+}
+
 @media(max-width: 767px) {
     .popup_img-open .popup__button-close {
          right: -34px;

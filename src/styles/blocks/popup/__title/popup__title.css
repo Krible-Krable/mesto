@@ -9,6 +9,9 @@
   margin-bottom: 54px;
 }
 
+.popup__form_type_delete .popup__title {
+  margin-bottom: 26px;
+}
 
 @media (max-width: 767px) {
     .popup__title {
