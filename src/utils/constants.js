@@ -5,6 +5,7 @@ export const countLike = '.card__button-like_count'//new;
 export const imgOpenPopup = '.popup_img-open';
 export const profileName = '.profile__name';
 export const profileBio = '.profile__bio';
+export const avatarImg = '.profile__avatar';
 export const profileAvatar = document.querySelector('.profile__avatar_wrap'); //new
 export const formDelete = '.popup__form_type_delete'; //new
 export const popupCard = '.popup_card';

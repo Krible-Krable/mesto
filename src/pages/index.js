@@ -1,26 +1,27 @@
 import './index.css';
 
-import { 
-editProfileButton, 
-popupAddCard, 
-imgOpenPopup,
-profileName,
-profileBio,
-popupCard,
-popupProfile,
-popupInputName,
-popupInputBio,
-popupInputLink,
-popupInputPlace,
-cardTemplateId,
-contentSection,
-validationConfig,
-likeButton,
-countLike,
-profileAvatar,
-formDelete,
-popupAvatarEdit,
-popupInputSrcAvatar,
+import {
+    editProfileButton,
+    popupAddCard,
+    imgOpenPopup,
+    profileName,
+    profileBio,
+    popupCard,
+    popupProfile,
+    popupInputName,
+    popupInputBio,
+    popupInputLink,
+    popupInputPlace,
+    cardTemplateId,
+    contentSection,
+    validationConfig,
+    likeButton,
+    countLike,
+    profileAvatar,
+    formDelete,
+    popupAvatarEdit,
+    popupInputSrcAvatar,
+    avatarImg
 } from './../utils/constants.js';
 
 import { initialCards } from './../initial-cards.js';
@@ -37,13 +38,13 @@ function createCard(label, url, selector) {
     const card = new Card(label, url, selector, function () {
         popupWithImage.open(url, label);
     });
-    return card; 
+    return card;
 }
 
 const popupWithImage = new PopupWithImage(imgOpenPopup);
 popupWithImage.setEventListeners();
 
-const userInfo = new UserInfo({ selectorName: profileName, selectorBio: profileBio });
+const userInfo = new UserInfo({ selectorName: profileName, selectorBio: profileBio, selectorAvatar: avatarImg });
 
 const popupWithFormProfile = new PopupWithForm(popupProfile, function ({ name, bio }) {
     userInfo.saveUserInfo({ name, bio });
@@ -69,7 +70,7 @@ editProfileButton.addEventListener('click', function () {
 
 const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label }) {
     const card = createCard(label, url, cardTemplateId);
-    section.addItem(card.getCardElem());  
+    section.addItem(card.getCardElem());
 }, {
         url: popupInputLink,
         label: popupInputPlace
@@ -86,27 +87,27 @@ popupAddCard.addEventListener('click', function () {
 
 //попап аватара
 // const profileImg = document.querySelector('.profile__avatar');
-const popupEditAvatar = new PopupWithForm(popupAvatarEdit, function() {
+const popupEditAvatar = new PopupWithForm(popupAvatarEdit, function ({ url }) {
+    userInfo.saveUserAvatar(url);
 }, {
-        img: popupInputSrcAvatar,
-});
+        url: popupInputSrcAvatar,
+    });
 
 const validatorInputAvatar = new FormValidator(validationConfig, popupEditAvatar.getFormElem());
 validatorInputAvatar.enableValidation();
+popupEditAvatar.setEventListeners();
 
-
-profileAvatar.addEventListener('click', function() {
+profileAvatar.addEventListener('click', function () {
     popupEditAvatar.open();
 
-    popupEditAvatar.setEventListeners();
     validatorInputAvatar.resetValidation();
 });
 
 
 const section = new Section({
     items: initialCards, renderer(item) {
-       const card = createCard(item.name, item.link, cardTemplateId);
-        section.addItem(card.getCardElem()); 
+        const card = createCard(item.name, item.link, cardTemplateId);
+        section.addItem(card.getCardElem());
     }
 }, contentSection);
 
