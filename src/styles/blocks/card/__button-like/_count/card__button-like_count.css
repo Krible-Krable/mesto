@@ -1,0 +1,9 @@
+.card__button-like_count {
+    width: 10px;
+    height: 13px;
+}
+
+.card__button-like_countt {
+    display: flex;
+    align-items: center;
+}

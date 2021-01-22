@@ -14,7 +14,13 @@ popupInputLink,
 popupInputPlace,
 cardTemplateId,
 contentSection,
-validationConfig 
+validationConfig,
+likeButton,
+countLike,
+profileAvatar,
+formDelete,
+popupAvatarEdit,
+popupInputSrcAvatar,
 } from './../utils/constants.js';
 
 import { initialCards } from './../initial-cards.js';
@@ -76,6 +82,24 @@ validatorFormCard.enableValidation();
 popupAddCard.addEventListener('click', function () {
     popupWithFormCard.open();
     validatorFormCard.resetValidation();
+});
+
+//попап аватара
+// const profileImg = document.querySelector('.profile__avatar');
+const popupEditAvatar = new PopupWithForm(popupAvatarEdit, function() {
+}, {
+        img: popupInputSrcAvatar,
+});
+
+const validatorInputAvatar = new FormValidator(validationConfig, popupEditAvatar.getFormElem());
+validatorInputAvatar.enableValidation();
+
+
+profileAvatar.addEventListener('click', function() {
+    popupEditAvatar.open();
+
+    popupEditAvatar.setEventListeners();
+    validatorInputAvatar.resetValidation();
 });
 
 
