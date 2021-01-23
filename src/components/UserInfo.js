@@ -21,7 +21,6 @@ export class UserInfo {
     }
 
     saveUserAvatar(url) {
-
         this._avatarUser.src = url;
     }
 }

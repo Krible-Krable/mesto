@@ -67,7 +67,7 @@ editProfileButton.addEventListener('click', function () {
     formValidator.resetValidation();
 });
 
-
+//попап создания карточки
 const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label }) {
     const card = createCard(label, url, cardTemplateId);
     section.addItem(card.getCardElem());
@@ -86,7 +86,7 @@ popupAddCard.addEventListener('click', function () {
 });
 
 //попап аватара
-// const profileImg = document.querySelector('.profile__avatar');
+
 const popupEditAvatar = new PopupWithForm(popupAvatarEdit, function ({ url }) {
     userInfo.saveUserAvatar(url);
 }, {
