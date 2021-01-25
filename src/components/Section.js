@@ -1,5 +1,5 @@
 export class Section {
-    constructor({ items, renderer }, selectorContainer ) {
+    constructor({ items, renderer }, selectorContainer) {     //items, убрала
         this.items = items;
         this.renderer = renderer;
         this.selectorContainer = selectorContainer;

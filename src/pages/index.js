@@ -32,6 +32,8 @@ import { Section } from './../components/Section.js';
 import { PopupWithForm } from './../components/PopupWithForm.js';
 import { PopupWithImage } from './../components/PopupWithImage.js';
 import { UserInfo } from './../components/UserInfo.js';
+import { Api } from '../components/Api.js';
+
 
 
 function createCard(label, url, selector) {
@@ -41,19 +43,46 @@ function createCard(label, url, selector) {
     return card;
 }
 
+
+const api = new Api({
+    url: 'https://mesto.nomoreparties.co/v1',
+    token: 'ae0317fc-6951-4637-95ad-130db5499c77'
+});
+
+// api.getUser().then(user => {
+//     user
+// });
+
+
+
+
 const popupWithImage = new PopupWithImage(imgOpenPopup);
 popupWithImage.setEventListeners();
 
 const userInfo = new UserInfo({ selectorName: profileName, selectorBio: profileBio, selectorAvatar: avatarImg });
 
-const popupWithFormProfile = new PopupWithForm(popupProfile, function ({ name, bio }) {
-    userInfo.saveUserInfo({ name, bio });
-}, {
-        name: popupInputName,
-        bio: popupInputBio
-    });
+api.getUser().then(user => {
+    userInfo.saveUserInfo({ name: user.name, bio: user.about }) //ТУТ АПИ
+});
 
-popupWithFormProfile.setEventListeners();
+api.editDataProfile().then(user => {
+    const popupWithFormProfile = new PopupWithForm(popupProfile, function () {
+        userInfo.saveUserInfo({ name: user.name, bio: user.about });
+    }, {
+            name: popupInputName.value,
+            bio: popupInputBio.value
+        });
+    popupWithFormProfile.setEventListeners();
+})
+
+// const popupWithFormProfile = new PopupWithForm(popupProfile, function ({ name, bio }) {
+//     userInfo.saveUserInfo({ name, bio });
+// }, {
+//         name: popupInputName,
+//         bio: popupInputBio
+//     });
+
+// popupWithFormProfile.setEventListeners();
 const formValidator = new FormValidator(validationConfig, popupWithFormProfile.getFormElem());
 formValidator.enableValidation();
 
@@ -89,7 +118,8 @@ popupAddCard.addEventListener('click', function () {
 
 const popupEditAvatar = new PopupWithForm(popupAvatarEdit, function ({ url }) {
     userInfo.saveUserAvatar(url);
-}, {
+},
+    {
         url: popupInputSrcAvatar,
     });
 
@@ -104,15 +134,34 @@ profileAvatar.addEventListener('click', function () {
 });
 
 
-const section = new Section({
-    items: initialCards, renderer(item) {
-        const card = createCard(item.name, item.link, cardTemplateId);
-        section.addItem(card.getCardElem());
-    }
-}, contentSection);
+// const section = new Section({
+//     items: initialCards, renderer(item) {                       //initialCards, принимал айтемс
+//         const card = createCard(item.name, item.link, cardTemplateId);
+//         section.addItem(card.getCardElem());
+//     }
+// }, contentSection);
 
-section.renderCards();
+// section.renderCards();
 
+api.getInitialCards().then(data => {
+    const section = new Section({
+        items: data, renderer(item) {                       //initialCards, принимал айтемс
+            const card = createCard(item.name, item.link, cardTemplateId);
+            section.addItem(card.getCardElem());
+        }
+    }, contentSection);
+
+    section.renderCards();
+})
+
+// api.getInitialCards().then(data => {
+//     section.renderCards(data.item);
+// })
+
+
+// api.getUser().then(user => {
+//     userInfo.saveUserInfo({ name: user.name, bio: user.about }) //ТУТ АПИ
+// });
 
 
 
