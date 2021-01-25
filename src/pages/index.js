@@ -108,6 +108,7 @@ const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label })
     });
 
 popupWithFormCard.setEventListeners();
+
 const validatorFormCard = new FormValidator(validationConfig, popupWithFormCard.getFormElem());
 validatorFormCard.enableValidation();
 
@@ -145,26 +146,20 @@ profileAvatar.addEventListener('click', function () {
 
 // section.renderCards();
 
+const section = new Section({
+    renderer(item) {                       //initialCards, принимал айтемс
+        const card = createCard(item.name, item.link, cardTemplateId);
+        section.addItem(card.getCardElem());
+    }
+}, contentSection);
+
+// section.renderCards();
+
 api.getInitialCards().then(data => {
-    const section = new Section({
-        items: data, renderer(item) {                       //initialCards, принимал айтемс
-            const card = createCard(item.name, item.link, cardTemplateId);
-            section.addItem(card.getCardElem());
-        }
-    }, contentSection);
-
-    section.renderCards();
+    // const card = createCard(label, url, cardTemplateId);
+    // section.addItem(card.getCardElem());
+    section.renderCards(data);
 })
-
-// api.getInitialCards().then(data => {
-//     section.renderCards(data.item);
-// })
-
-
-// api.getUser().then(user => {
-//     userInfo.saveUserInfo({ name: user.name, bio: user.about }) //ТУТ АПИ
-// });
-
 
 
 

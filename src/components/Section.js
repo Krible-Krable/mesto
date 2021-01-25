@@ -1,14 +1,14 @@
 export class Section {
-    constructor({ items, renderer }, selectorContainer) {     //items, убрала
-        this.items = items;
+    constructor({ renderer }, selectorContainer) {     //items, убрала
+        // this.items = items;
         this.renderer = renderer;
         this.selectorContainer = selectorContainer;
         this.sectionCard = document.querySelector(selectorContainer);
     }
 
-    renderCards() {
+    renderCards(items) {
         //отрисовка всех элементов
-        this.items.forEach((item) => {
+        items.forEach((item) => {
             this.renderer(item);
         });
     }
