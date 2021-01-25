@@ -36,8 +36,8 @@ import { Api } from '../components/Api.js';
 
 
 
-function createCard(label, url, selector) {
-    const card = new Card(label, url, selector, function () {
+function createCard(label, url, likes, selector) {
+    const card = new Card(label, url, likes, selector, function () {
         popupWithImage.open(url, label);
     });
     return card;
@@ -100,7 +100,7 @@ editProfileButton.addEventListener('click', function () {
 
 //попап создания карточки
 const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label }) {
-    const card = createCard(label, url, cardTemplateId);
+    const card = createCard(label, url, [], cardTemplateId);
     section.addItem(card.getCardElem());
 }, {
         url: popupInputLink,
@@ -148,7 +148,7 @@ profileAvatar.addEventListener('click', function () {
 
 const section = new Section({
     renderer(item) {                       //initialCards, принимал айтемс
-        const card = createCard(item.name, item.link, cardTemplateId);
+        const card = createCard(item.name, item.link, item.likes, cardTemplateId);
         section.addItem(card.getCardElem());
     }
 }, contentSection);

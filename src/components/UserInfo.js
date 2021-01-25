@@ -1,5 +1,5 @@
 export class UserInfo {
-    constructor({ selectorName, selectorBio, selectorAvatar }) {
+    constructor({ selectorName, selectorBio, selectorAvatar, }) {
         this.selectorName = selectorName;
         this.selectorBio = selectorBio;
         this.selectorAvatar = selectorAvatar;
@@ -15,12 +15,17 @@ export class UserInfo {
         };
     }
 
-    saveUserInfo({ name, bio }) {
+    saveUserInfo({ name, bio, id }) {
         this._nameUser.textContent = name;
         this._bioUser.textContent = bio;
+        this._id = id;
     }
 
     saveUserAvatar(url) {
         this._avatarUser.src = url;
+    }
+
+    getUserId() {
+        return this._id;
     }
 }
