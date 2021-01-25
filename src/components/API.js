@@ -93,4 +93,23 @@ export class Api {
                 console.log('govno');
             })
     }
+
+    deleteCard(cardId) {
+        return fetch(`${this._url}/cohort-19/cards/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+            },
+        })
+            .then(result => {
+                if (result.ok) {
+                    console.log('yoohooo!');
+                }
+                return Promise.reject(`Error: ${res.status}`)
+            })
+            .catch(err => {
+                console.log(err);
+                console.log('govno');
+            })
+    }
 }

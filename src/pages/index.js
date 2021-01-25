@@ -35,10 +35,11 @@ import { UserInfo } from './../components/UserInfo.js';
 import { Api } from '../components/Api.js';
 
 
-
-function createCard(label, url, likes, selector) {
+function createCard(label, url, likes, cardId, selector) {
     const card = new Card(label, url, likes, selector, function () {
         popupWithImage.open(url, label);
+    }, function () {
+        api.deleteCard(cardId);
     });
     return card;
 }
@@ -100,8 +101,11 @@ editProfileButton.addEventListener('click', function () {
 
 //попап создания карточки
 const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label }) {
-    const card = createCard(label, url, [], cardTemplateId);
-    section.addItem(card.getCardElem());
+    api.addNewCard(label, url).then(res => {
+        debugger
+        const card = createCard(label, url, [], res._id, cardTemplateId);
+        section.addItem(card.getCardElem());
+    });
 }, {
         url: popupInputLink,
         label: popupInputPlace
@@ -148,7 +152,7 @@ profileAvatar.addEventListener('click', function () {
 
 const section = new Section({
     renderer(item) {                       //initialCards, принимал айтемс
-        const card = createCard(item.name, item.link, item.likes, cardTemplateId);
+        const card = createCard(item.name, item.link, item.likes, item._id, cardTemplateId);
         section.addItem(card.getCardElem());
     }
 }, contentSection);

@@ -1,10 +1,11 @@
 export class Card {
-    constructor(text, img, likes, templateSelector, onPhotoClick) {
+    constructor(text, img, likes, templateSelector, onPhotoClick, onDelete) {
         this._img = img;
         this._text = text;
         this._templateSelector = templateSelector;
         this._onPhotoClick = onPhotoClick;
         this._likes = likes;
+        this._onDelete = onDelete;
 
         this._addMarkup();
         this._addListener();
@@ -35,7 +36,7 @@ export class Card {
     _addListener() {
         this._cardFoto.addEventListener('click', this._handlerClickPopup.bind(this));
 
-        this._buttonDelete.addEventListener('click', this._handlerClickDelete);
+        this._buttonDelete.addEventListener('click', this._handlerClickDelete.bind(this));
 
         this._buttonLike.addEventListener('click', this._handlerClickLike.bind(this));
     }
@@ -46,6 +47,7 @@ export class Card {
 
     _handlerClickDelete(evt) {
         evt.target.parentNode.remove();
+        this._onDelete();
     }
 
     _handlerClickLike() {
