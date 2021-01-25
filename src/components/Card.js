@@ -1,11 +1,12 @@
 export class Card {
-    constructor(text, img, likes, templateSelector, onPhotoClick, onDelete) {
+    constructor(text, img, likes, isOwn, templateSelector, onPhotoClick, onDelete) {
         this._img = img;
         this._text = text;
         this._templateSelector = templateSelector;
         this._onPhotoClick = onPhotoClick;
         this._likes = likes;
         this._onDelete = onDelete;
+        this._isOwn = isOwn;
 
         this._addMarkup();
         this._addListener();
@@ -22,6 +23,9 @@ export class Card {
         this._likesElem.innerText = this._likes.length;
         this._cardFoto.src = this._img;
         this._cardFoto.setAttribute('alt', this._text);
+        if (this._isOwn) {
+            this._buttonDelete.classList.remove('card__button-delete_hidden');
+        }
     }
 
     _getCardTemplate() {

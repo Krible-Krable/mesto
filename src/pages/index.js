@@ -35,8 +35,10 @@ import { UserInfo } from './../components/UserInfo.js';
 import { Api } from '../components/Api.js';
 
 
-function createCard(label, url, likes, cardId, selector) {
-    const card = new Card(label, url, likes, selector, function () {
+function createCard(label, url, likes, cardId, ownerId, selector) {
+    const isOwnCard = userInfo.getUserId() === ownerId;
+
+    const card = new Card(label, url, likes, isOwnCard, selector, function () {
         popupWithImage.open(url, label);
     }, function () {
         api.deleteCard(cardId);
@@ -63,7 +65,11 @@ popupWithImage.setEventListeners();
 const userInfo = new UserInfo({ selectorName: profileName, selectorBio: profileBio, selectorAvatar: avatarImg });
 
 api.getUser().then(user => {
-    userInfo.saveUserInfo({ name: user.name, bio: user.about }) //ТУТ АПИ
+    userInfo.saveUserInfo({ name: user.name, bio: user.about, id: user._id }) //ТУТ АПИ
+
+    api.getInitialCards().then(data => {
+        section.renderCards(data);
+    })
 });
 
 
@@ -103,7 +109,7 @@ editProfileButton.addEventListener('click', function () {
 const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label }) {
     api.addNewCard(label, url).then(res => {
         debugger
-        const card = createCard(label, url, [], res._id, cardTemplateId);
+        const card = createCard(label, url, [], res._id, userInfo.getUserId(), cardTemplateId);
         section.addItem(card.getCardElem());
     });
 }, {
@@ -152,18 +158,14 @@ profileAvatar.addEventListener('click', function () {
 
 const section = new Section({
     renderer(item) {                       //initialCards, принимал айтемс
-        const card = createCard(item.name, item.link, item.likes, item._id, cardTemplateId);
+        const card = createCard(item.name, item.link, item.likes, item._id, item.owner._id, cardTemplateId);
         section.addItem(card.getCardElem());
     }
 }, contentSection);
 
 // section.renderCards();
 
-api.getInitialCards().then(data => {
-    // const card = createCard(label, url, cardTemplateId);
-    // section.addItem(card.getCardElem());
-    section.renderCards(data);
-})
+
 
 
 
