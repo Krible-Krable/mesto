@@ -65,15 +65,17 @@ api.getUser().then(user => {
     userInfo.saveUserInfo({ name: user.name, bio: user.about }) //ТУТ АПИ
 });
 
-api.editDataProfile().then(user => {
-    const popupWithFormProfile = new PopupWithForm(popupProfile, function () {
-        userInfo.saveUserInfo({ name: user.name, bio: user.about });
-    }, {
-            name: popupInputName.value,
-            bio: popupInputBio.value
-        });
-    popupWithFormProfile.setEventListeners();
-})
+
+const popupWithFormProfile = new PopupWithForm(popupProfile, function ({ name, bio }) {
+    userInfo.saveUserInfo({ name, bio });
+    api.editDataProfile(name, bio);
+}, {
+        name: popupInputName,
+        bio: popupInputBio
+    });
+
+popupWithFormProfile.setEventListeners();
+
 
 // const popupWithFormProfile = new PopupWithForm(popupProfile, function ({ name, bio }) {
 //     userInfo.saveUserInfo({ name, bio });
@@ -135,7 +137,7 @@ profileAvatar.addEventListener('click', function () {
 
 
 // const section = new Section({
-//     items: initialCards, renderer(item) {                       //initialCards, принимал айтемс
+//     items: data, renderer(item) {                       //initialCards, принимал айтемс
 //         const card = createCard(item.name, item.link, cardTemplateId);
 //         section.addItem(card.getCardElem());
 //     }
