@@ -50,8 +50,14 @@ export class Card {
     }
 
     _handlerClickDelete(evt) {
-        evt.target.parentNode.remove();
+        this._deleteCard = () => evt.target.parentNode.remove();
         this._onDelete();
+    }
+
+    deleteCard() {
+        if (this._deleteCard) {
+            this._deleteCard();
+        }
     }
 
     _handlerClickLike() {

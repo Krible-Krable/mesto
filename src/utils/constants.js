@@ -8,6 +8,7 @@ export const profileBio = '.profile__bio';
 export const avatarImg = '.profile__avatar';
 export const profileAvatar = document.querySelector('.profile__avatar_wrap'); //new
 export const formDelete = '.popup__form_type_delete'; //new
+export const popupDeleteSelector = '.popup_get-delete';
 export const popupCard = '.popup_card';
 export const popupProfile = '.popup_profile';
 export const popupAvatarEdit = '.popup_edit-avatar';//new

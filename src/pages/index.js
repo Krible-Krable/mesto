@@ -12,6 +12,7 @@ import {
     popupInputBio,
     popupInputLink,
     popupInputPlace,
+    popupDeleteSelector,
     cardTemplateId,
     contentSection,
     validationConfig,
@@ -31,9 +32,14 @@ import { FormValidator } from './../components/FormValidator.js'
 import { Section } from './../components/Section.js';
 import { PopupWithForm } from './../components/PopupWithForm.js';
 import { PopupWithImage } from './../components/PopupWithImage.js';
+import { PopupDelete } from './../components/PopupDelete.js';
 import { UserInfo } from './../components/UserInfo.js';
 import { Api } from '../components/Api.js';
+import { Popup } from '../components/Popup';
 
+
+const popupDelete = new PopupDelete(popupDeleteSelector);
+popupDelete.setEventListeners();
 
 function createCard(label, url, likes, cardId, ownerId, selector) {
     const isOwnCard = userInfo.getUserId() === ownerId;
@@ -41,7 +47,11 @@ function createCard(label, url, likes, cardId, ownerId, selector) {
     const card = new Card(label, url, likes, isOwnCard, selector, function () {
         popupWithImage.open(url, label);
     }, function () {
-        api.deleteCard(cardId);
+        // api.deleteCard(cardId);
+        popupDelete.open(function () {
+            api.deleteCard(cardId);
+            card.deleteCard();
+        });
     });
     return card;
 }
@@ -108,7 +118,6 @@ editProfileButton.addEventListener('click', function () {
 //попап создания карточки
 const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label }) {
     api.addNewCard(label, url).then(res => {
-        debugger
         const card = createCard(label, url, [], res._id, userInfo.getUserId(), cardTemplateId);
         section.addItem(card.getCardElem());
     });
