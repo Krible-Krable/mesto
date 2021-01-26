@@ -19,7 +19,6 @@ export class Api {
             })
             .catch(err => {
                 console.log(err);
-                console.log('govno');
             })
     }
 
@@ -37,9 +36,8 @@ export class Api {
                 }
                 return Promise.reject(`Error: ${res.status}`)
             })
-            .catch((err) => {
+            .catch(err => {
                 console.log(err);
-                console.log('не получилось');
             })
     }
 
@@ -65,7 +63,6 @@ export class Api {
             })
             .catch(err => {
                 console.log(err);
-                console.log('govno');
             })
     }
 
@@ -90,7 +87,6 @@ export class Api {
             })
             .catch(err => {
                 console.log(err);
-                console.log('govno');
             })
     }
 
@@ -109,7 +105,6 @@ export class Api {
             })
             .catch(err => {
                 console.log(err);
-                console.log('govno');
             })
     }
 
@@ -129,7 +124,6 @@ export class Api {
             })
             .catch(err => {
                 console.log(err);
-                console.log('govno');
             })
     }
 
@@ -149,7 +143,6 @@ export class Api {
             })
             .catch(err => {
                 console.log(err);
-                console.log('govno');
             })
     }
 
@@ -171,7 +164,6 @@ export class Api {
             })
             .catch(err => {
                 console.log(err);
-                console.log('govno');
             })
     }
 }
