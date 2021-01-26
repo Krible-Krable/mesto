@@ -87,10 +87,6 @@ const api = new Api({
     token: 'ae0317fc-6951-4637-95ad-130db5499c77'
 });
 
-// api.getUser().then(user => {
-//     user
-// });
-
 
 const popupWithImage = new PopupWithImage(imgOpenPopup);
 popupWithImage.setEventListeners();
@@ -176,16 +172,6 @@ profileAvatar.addEventListener('click', function () {
     validatorInputAvatar.resetValidation();
 });
 
-
-// const section = new Section({
-//     items: data, renderer(item) {                       //initialCards, принимал айтемс
-//         const card = createCard(item.name, item.link, cardTemplateId);
-//         section.addItem(card.getCardElem());
-//     }
-// }, contentSection);
-
-// section.renderCards();
-
 const section = new Section({
     renderer(item) {                       //initialCards, принимал айтемс
         const card = createCard(item.name, item.link, item.likes, item._id, item.owner._id, cardTemplateId);
@@ -193,7 +179,6 @@ const section = new Section({
     }
 }, contentSection);
 
-// section.renderCards();
 
 
 
