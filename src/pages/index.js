@@ -16,16 +16,11 @@ import {
     cardTemplateId,
     contentSection,
     validationConfig,
-    likeButton,
-    countLike,
     profileAvatar,
-    formDelete,
     popupAvatarEdit,
     popupInputSrcAvatar,
     avatarImg
 } from './../utils/constants.js';
-
-import { initialCards } from './../initial-cards.js';
 
 import { Card } from './../components/Card.js'
 import { FormValidator } from './../components/FormValidator.js'
