@@ -1,12 +1,12 @@
 export class Card {
-    constructor(text, img, likes, isOwn, templateSelector, onPhotoClick, onDelete) {
+    constructor(text, img, isOwn, templateSelector, onPhotoClick, onDelete, onLike) {
         this._img = img;
         this._text = text;
         this._templateSelector = templateSelector;
         this._onPhotoClick = onPhotoClick;
-        this._likes = likes;
         this._onDelete = onDelete;
         this._isOwn = isOwn;
+        this._onLike = onLike;
 
         this._addMarkup();
         this._addListener();
@@ -20,7 +20,6 @@ export class Card {
         this._likesElem = this._cardElem.querySelector('.card__button-like_count');
 
         this._cardElem.querySelector('.card__heading').innerText = this._text;
-        this._likesElem.innerText = this._likes.length;
         this._cardFoto.src = this._img;
         this._cardFoto.setAttribute('alt', this._text);
         if (this._isOwn) {
@@ -61,6 +60,7 @@ export class Card {
     }
 
     _handlerClickLike() {
+        this._onLike(this._isToggled);
         this._buttonLike.classList.toggle('card__button-like_active');
     }
 
@@ -68,6 +68,15 @@ export class Card {
         return this._cardElem;
     }
 
+    setLikes(likes, isToggled) {
+        this._likesElem.innerText = likes;
+        this._isToggled = isToggled;
 
+        if (isToggled) {
+            this._buttonLike.classList.add('card__button-like_active');
+        } else {
+            this._buttonLike.classList.remove('card__button-like_active');
+        }
+    }
 }
 

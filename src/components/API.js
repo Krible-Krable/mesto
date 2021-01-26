@@ -112,4 +112,44 @@ export class Api {
                 console.log('govno');
             })
     }
+
+    like(cardId) {
+        return fetch(`${this._url}/cohort-19/cards/likes/${cardId}`, {
+            method: 'PUT',
+            headers: {
+                authorization: this._token,
+            },
+        })
+            .then(result => {
+                if (result.ok) {
+                    console.log('пришел изменить лайк!');
+                    return result.json();
+                }
+                return Promise.reject(`Error: ${res.status}`)
+            })
+            .catch(err => {
+                console.log(err);
+                console.log('govno');
+            })
+    }
+
+    dislike(cardId) {
+        return fetch(`${this._url}/cohort-19/cards/likes/${cardId}`, {
+            method: 'DELETE',
+            headers: {
+                authorization: this._token,
+            },
+        })
+            .then(result => {
+                if (result.ok) {
+                    console.log('пришел изменить лайк!');
+                    return result.json();
+                }
+                return Promise.reject(`Error: ${res.status}`)
+            })
+            .catch(err => {
+                console.log(err);
+                console.log('govno');
+            })
+    }
 }

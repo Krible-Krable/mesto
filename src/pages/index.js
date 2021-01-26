@@ -44,7 +44,11 @@ popupDelete.setEventListeners();
 function createCard(label, url, likes, cardId, ownerId, selector) {
     const isOwnCard = userInfo.getUserId() === ownerId;
 
-    const card = new Card(label, url, likes, isOwnCard, selector, function () {
+    const isToggled = likes.find(user => {
+        return user._id === userInfo.getUserId();
+    });
+
+    const card = new Card(label, url, isOwnCard, selector, function () {
         popupWithImage.open(url, label);
     }, function () {
         // api.deleteCard(cardId);
@@ -52,7 +56,28 @@ function createCard(label, url, likes, cardId, ownerId, selector) {
             api.deleteCard(cardId);
             card.deleteCard();
         });
+    }, function (isWasToggled) {
+        if (isWasToggled) {
+            api.dislike(cardId).then(res => {
+                const isToggled = res.likes.find(user => {
+                    return user._id === userInfo.getUserId();
+                });
+
+                card.setLikes(res.likes.length, isToggled);
+            });
+        } else {
+            api.like(cardId).then(res => {
+                const isToggled = res.likes.find(user => {
+                    return user._id === userInfo.getUserId();
+                });
+
+                card.setLikes(res.likes.length, isToggled);
+            });
+        }
     });
+
+    card.setLikes(likes.length, isToggled);
+
     return card;
 }
 
