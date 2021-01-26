@@ -119,8 +119,6 @@ const popupWithFormProfile = new PopupWithForm(popupProfile, function ({ name, b
 
 popupWithFormProfile.setEventListeners();
 
-
-// popupWithFormProfile.setEventListeners();
 const formValidator = new FormValidator(validationConfig, popupWithFormProfile.getFormElem());
 formValidator.enableValidation();
 
