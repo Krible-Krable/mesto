@@ -108,8 +108,10 @@ api.getUser().then(user => {
 
 
 const popupWithFormProfile = new PopupWithForm(popupProfile, function ({ name, bio }) {
-    userInfo.saveUserInfo({ name, bio });
-    api.editDataProfile(name, bio);
+    api.editDataProfile(name, bio).then(() => {
+        popupWithFormProfile.close();
+        userInfo.saveUserInfo({ name, bio });
+    });
 }, {
         name: popupInputName,
         bio: popupInputBio
@@ -117,13 +119,6 @@ const popupWithFormProfile = new PopupWithForm(popupProfile, function ({ name, b
 
 popupWithFormProfile.setEventListeners();
 
-
-// const popupWithFormProfile = new PopupWithForm(popupProfile, function ({ name, bio }) {
-//     userInfo.saveUserInfo({ name, bio });
-// }, {
-//         name: popupInputName,
-//         bio: popupInputBio
-//     });
 
 // popupWithFormProfile.setEventListeners();
 const formValidator = new FormValidator(validationConfig, popupWithFormProfile.getFormElem());
@@ -142,6 +137,7 @@ editProfileButton.addEventListener('click', function () {
 //попап создания карточки
 const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label }) {
     api.addNewCard(label, url).then(res => {
+        popupWithFormCard.close();
         const card = createCard(label, url, [], res._id, userInfo.getUserId(), cardTemplateId);
         section.addItem(card.getCardElem());
     });
@@ -163,8 +159,10 @@ popupAddCard.addEventListener('click', function () {
 //попап аватара
 
 const popupEditAvatar = new PopupWithForm(popupAvatarEdit, function ({ url }) {
-    api.editAvatar(url);
-    userInfo.saveUserAvatar(url);
+    api.editAvatar(url).then(() => {
+        popupEditAvatar.close();
+        userInfo.saveUserAvatar(url);
+    })
 },
     {
         url: popupInputSrcAvatar,
