@@ -29,7 +29,7 @@ import { PopupWithForm } from './../components/PopupWithForm.js';
 import { PopupWithImage } from './../components/PopupWithImage.js';
 import { PopupDelete } from './../components/PopupDelete.js';
 import { UserInfo } from './../components/UserInfo.js';
-import { Api } from '../components/Api.js';
+import { Api } from './../components/Api.js';
 import { Popup } from '../components/Popup';
 
 
