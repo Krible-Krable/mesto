@@ -62,6 +62,12 @@ export class Card {
     _handlerClickLike() {
         this._onLike(this._isToggled);
         this._buttonLike.classList.toggle('card__button-like_active');
+
+        if (this._isToggled) {
+            this._likesElem.innerText = this._likes - 1;
+        } else {
+            this._likesElem.innerText = this._likes + 1;
+        }
     }
 
     getCardElem() {
@@ -70,6 +76,7 @@ export class Card {
 
     setLikes(likes, isToggled) {
         this._likesElem.innerText = likes;
+        this._likes = likes;
         this._isToggled = isToggled;
 
         if (isToggled) {
