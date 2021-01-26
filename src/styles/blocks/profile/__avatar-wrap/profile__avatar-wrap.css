@@ -1,4 +1,4 @@
-.profile__avatar_wrap {
+.profile__avatar-wrap {
     position: relative;
     width: 120px;
     height: 120px;
@@ -8,7 +8,7 @@
 
 }
 
-.profile__avatar_wrap::after{ 
+.profile__avatar-wrap::after{ 
     top: 0;
     bottom: 0;
     left: 0;
@@ -20,9 +20,9 @@
     /* transition: opacity 0.5s ease; */
 }
 
-.profile__avatar_wrap:hover::after{
+.profile__avatar-wrap:hover::after{
     content: '';
-    background: url(./../../../../../../images/penсil.svg) no-repeat;
+    background: url(./../../../../../images/penсil.svg) no-repeat;
     background-color: rgba(0, 0, 0, 0.8);
     background-position: 50px;
     transition: opacity .5s linear;
