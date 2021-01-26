@@ -92,8 +92,6 @@ const api = new Api({
 // });
 
 
-
-
 const popupWithImage = new PopupWithImage(imgOpenPopup);
 popupWithImage.setEventListeners();
 
@@ -101,6 +99,7 @@ const userInfo = new UserInfo({ selectorName: profileName, selectorBio: profileB
 
 api.getUser().then(user => {
     userInfo.saveUserInfo({ name: user.name, bio: user.about, id: user._id }) //ТУТ АПИ
+    userInfo.saveUserAvatar(user.avatar);
 
     api.getInitialCards().then(data => {
         section.renderCards(data);
@@ -164,6 +163,7 @@ popupAddCard.addEventListener('click', function () {
 //попап аватара
 
 const popupEditAvatar = new PopupWithForm(popupAvatarEdit, function ({ url }) {
+    api.editAvatar(url);
     userInfo.saveUserAvatar(url);
 },
     {

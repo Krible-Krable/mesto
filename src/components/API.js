@@ -152,4 +152,26 @@ export class Api {
                 console.log('govno');
             })
     }
+
+    editAvatar(avatar) {
+        return fetch(`${this._url}/cohort-19/users/me/avatar`, {
+            method: 'PATCH',
+            headers: {
+                authorization: this._token,
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ avatar })
+        })
+            .then(result => {
+                if (result.ok) {
+                    console.log('пришел изменить профиль!');
+                    return result.json();
+                }
+                return Promise.reject(`Error: ${res.status}`)
+            })
+            .catch(err => {
+                console.log(err);
+                console.log('govno');
+            })
+    }
 }
