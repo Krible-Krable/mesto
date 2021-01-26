@@ -161,7 +161,7 @@ const validatorInputAvatar = new FormValidator(validationConfig, popupEditAvatar
 validatorInputAvatar.enableValidation();
 popupEditAvatar.setEventListeners();
 
-profileAvatar.addEventListener('click', function () {
+document.querySelector(profileAvatar).addEventListener('click', function () {
     popupEditAvatar.open();
 
     validatorInputAvatar.resetValidation();
