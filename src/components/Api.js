@@ -4,21 +4,22 @@ export class Api {
         this._token = token; //'ae0317fc-6951-4637-95ad-130db5499c77';
     }
 
+    _getResponseData(res) {
+        if (!res.ok) {
+            return Promise.reject(`Ошибка: ${res.status}`);
+        }
+
+        return res.json();
+    }
+
     getUser() {
         return fetch(`${this._url}/cohort-19/users/me`, {
             headers: {
                 authorization: this._token,
             }
         })
-            .then(result => {
-                if (result.ok) {
-                    console.log('yoohooo!');
-                    return result.json();
-                }
-                return Promise.reject(`Error: ${result.status}`)
-            })
-            .catch(err => {
-                console.log(err);
+            .then(res => {
+                return this._getResponseData(res);
             })
     }
 
@@ -30,14 +31,7 @@ export class Api {
             }
         })
             .then(res => {
-                if (res.ok) {
-                    console.log('ура!');
-                    return res.json();
-                }
-                return Promise.reject(`Error: ${res.status}`)
-            })
-            .catch(err => {
-                console.log(err);
+                return this._getResponseData(res);
             })
     }
 
@@ -54,15 +48,8 @@ export class Api {
                 about: about
             })
         })
-            .then(result => {
-                if (result.ok) {
-                    console.log('пришел изменить профиль!');
-                    return result.json();
-                }
-                return Promise.reject(`Error: ${res.status}`)
-            })
-            .catch(err => {
-                console.log(err);
+            .then(res => {
+                return this._getResponseData(res);
             })
     }
 
@@ -78,15 +65,8 @@ export class Api {
                 link: link
             })
         })
-            .then(result => {
-                if (result.ok) {
-                    console.log('yoohooo!');
-                    return result.json();
-                }
-                return Promise.reject(`Error: ${res.status}`)
-            })
-            .catch(err => {
-                console.log(err);
+            .then(res => {
+                return this._getResponseData(res);
             })
     }
 
@@ -97,14 +77,8 @@ export class Api {
                 authorization: this._token,
             },
         })
-            .then(result => {
-                if (result.ok) {
-                    console.log('yoohooo!');
-                }
-                return Promise.reject(`Error: ${res.status}`)
-            })
-            .catch(err => {
-                console.log(err);
+            .then(res => {
+                return this._getResponseData(res);
             })
     }
 
@@ -115,15 +89,8 @@ export class Api {
                 authorization: this._token,
             },
         })
-            .then(result => {
-                if (result.ok) {
-                    console.log('пришел изменить лайк!');
-                    return result.json();
-                }
-                return Promise.reject(`Error: ${res.status}`)
-            })
-            .catch(err => {
-                console.log(err);
+            .then(res => {
+                return this._getResponseData(res);
             })
     }
 
@@ -134,15 +101,8 @@ export class Api {
                 authorization: this._token,
             },
         })
-            .then(result => {
-                if (result.ok) {
-                    console.log('пришел изменить лайк!');
-                    return result.json();
-                }
-                return Promise.reject(`Error: ${res.status}`)
-            })
-            .catch(err => {
-                console.log(err);
+            .then(res => {
+                return this._getResponseData(res);
             })
     }
 
@@ -155,15 +115,8 @@ export class Api {
             },
             body: JSON.stringify({ avatar })
         })
-            .then(result => {
-                if (result.ok) {
-                    console.log('пришел изменить профиль!');
-                    return result.json();
-                }
-                return Promise.reject(`Error: ${res.status}`)
-            })
-            .catch(err => {
-                console.log(err);
+            .then(res => {
+                return this._getResponseData(res);
             })
     }
 }

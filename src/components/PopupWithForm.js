@@ -34,8 +34,11 @@ export class PopupWithForm extends Popup {
     }
 
     close() {
-        this._submit.textContent = 'Сохранить';
         this._form.reset();
         super.close();
+    }
+
+    stopWaitIndication() {
+        this._submit.textContent = 'Сохранить';
     }
 }

@@ -12,7 +12,7 @@ export class PopupDelete extends Popup {
             e.preventDefault();
             onDelete();
             this._deleteButton.removeEventListener('click', deleteClickHandler);
-            this.close();
+            // this.close();
         }).bind(this);
 
         this._deleteButton.addEventListener('click', deleteClickHandler);
