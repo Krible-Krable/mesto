@@ -9,6 +9,6 @@
 }
 
 .card__button-like_active:hover {
-    cursor: pointer;
-    opacity: 100%;
+    /* cursor: pointer; */
+    opacity: 1; 
 }
