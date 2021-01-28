@@ -59,12 +59,18 @@ function createCard(label, url, likes, cardId, ownerId, selector) {
     }, function (isWasToggled) {
         if (isWasToggled) {
             api.dislike(cardId).then(res => {
-                card.setLikes(res.likes.length, false);
+                card.setLikes(res.likes.length, false)
+            })
+            .catch(err => {
+                console.log(err, 'Ошибка');
             });
         } else {
             api.like(cardId).then(res => {
                 card.setLikes(res.likes.length, true);
             })
+            .catch(err => {
+                console.log(err, 'Ошибка');
+            });
         }
     });
 
