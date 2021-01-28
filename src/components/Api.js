@@ -18,9 +18,7 @@ export class Api {
                 authorization: this._token,
             }
         })
-            .then(res => {
-                return this._getResponseData(res);
-            })
+            .then(this._getResponseData);
     }
 
     getInitialCards() {
@@ -30,9 +28,7 @@ export class Api {
                 'Content-Type': 'application/json'
             }
         })
-            .then(res => {
-                return this._getResponseData(res);
-            })
+            .then(this._getResponseData);
     }
 
     // modify
@@ -48,9 +44,7 @@ export class Api {
                 about: about
             })
         })
-            .then(res => {
-                return this._getResponseData(res);
-            })
+            .then(this._getResponseData);
     }
 
     addNewCard(name, link) {
@@ -65,9 +59,7 @@ export class Api {
                 link: link
             })
         })
-            .then(res => {
-                return this._getResponseData(res);
-            })
+            .then(this._getResponseData);
     }
 
     deleteCard(cardId) {
@@ -77,9 +69,7 @@ export class Api {
                 authorization: this._token,
             },
         })
-            .then(res => {
-                return this._getResponseData(res);
-            })
+            .then(this._getResponseData);
     }
 
     like(cardId) {
@@ -89,9 +79,7 @@ export class Api {
                 authorization: this._token,
             },
         })
-            .then(res => {
-                return this._getResponseData(res);
-            })
+            .then(this._getResponseData);
     }
 
     dislike(cardId) {
@@ -101,9 +89,7 @@ export class Api {
                 authorization: this._token,
             },
         })
-            .then(res => {
-                return this._getResponseData(res);
-            })
+            .then(this._getResponseData);
     }
 
     editAvatar(avatar) {
@@ -115,8 +101,6 @@ export class Api {
             },
             body: JSON.stringify({ avatar })
         })
-            .then(res => {
-                return this._getResponseData(res);
-            })
+            .then(this._getResponseData);
     }
 }

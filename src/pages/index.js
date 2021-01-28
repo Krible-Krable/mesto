@@ -36,7 +36,7 @@ import { Popup } from '../components/Popup';
 const popupDelete = new PopupDelete(popupDeleteSelector);
 popupDelete.setEventListeners();
 
-function createCard(label, url, likes, cardId, ownerId, selector) {
+function createCard({label, url, likes, cardId, ownerId, selector}) {
     const isOwnCard = userInfo.getUserId() === ownerId;
 
     const isToggled = likes.find(user => {
@@ -139,7 +139,8 @@ editProfileButton.addEventListener('click', function () {
 const popupWithFormCard = new PopupWithForm(popupCard, function ({ url, label }) {
     api.addNewCard(label, url)
         .then(res => {
-            const card = createCard(label, url, [], res._id, userInfo.getUserId(), cardTemplateId);
+            const card = createCard({ label: label, url: url, likes: [], cardId: res._id, ownerId: userInfo.getUserId(), selector: cardTemplateId }); 
+             // label, url, [], res._id, userInfo.getUserId(), cardTemplateId});
             section.addItem(card.getCardElem());
             popupWithFormCard.close();
         })
@@ -195,7 +196,8 @@ document.querySelector(profileAvatar).addEventListener('click', function () {
 
 const section = new Section({
     renderer(item) {   
-        const card = createCard(item.name, item.link, item.likes, item._id, item.owner._id, cardTemplateId);
+        const card = createCard({ label: item.name, url: item.link, likes: item.likes, 
+            cardId: item._id, ownerId: item.owner._id, selector: cardTemplateId });  
         section.addItem(card.getCardElem());
     }
 }, contentSection);
